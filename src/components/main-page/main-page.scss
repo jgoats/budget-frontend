@@ -1,0 +1,34 @@
+body {
+    margin : 0px;
+    padding : 0px;
+    box-sizing : border-box;
+}
+
+.main-container {
+    background-image : url("../../images/Flat-Mountains.svg");
+    width : 100vw;
+    height : 100vh;
+    position : absolute;
+    background-repeat : no-repeat;
+    background-size : cover;
+}
+.nav-container {
+    height : 50px;
+    width : 100vw;
+    background-color : black;
+    opacity : 0.5;
+}
+.nav-items {
+    text-decoration : none;
+    list-style: none;
+    display : flex;
+    justify-content:space-around;
+    align-items : center;
+    width : 60vw;
+    position : relative;
+    float : right;
+    height : 100%;
+}
+.nav-item {
+    color : white;
+}
