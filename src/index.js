@@ -1,14 +1,14 @@
 import React from "react";
 import ReactDom from "react-dom";
 import "./index.scss";
-import MainPage from "./components/main-page/main-page.js";
+import Main from "./components/main/main.js";
 
 class BudgetApp extends React.Component {
     render() {
         return (
-            <MainPage>
+            <Main>
 
-            </MainPage>
+            </Main>
         )
     }
 }
