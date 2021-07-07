@@ -1,0 +1,50 @@
+body {
+    margin : 0px;
+    padding : 0px;
+    box-sizing : border-box;
+    overflow-y : hidden;
+    overflow-x : hidden;
+    font-family: 'Oxygen', sans-serif;
+}
+
+.main-container {
+   // background-image : url("../../images/Flat-Mountains.svg");
+    width : 100vw;
+    height : 100vh;
+    position : relative;
+    background-repeat : no-repeat;
+    background-size : cover;
+}
+
+.content-container {
+    position : relative;
+    width : 100vw;
+    top : 50px;
+    height : calc(100% - 50px);
+    display : flex;
+    align-items : center;
+    justify-content: center;
+}
+.message {
+    width : 50vw;
+    height : 60vh;
+    background-color : white;
+    margin-right : 1vw;
+    display : flex;
+    align-items: center;
+}
+.heading {
+padding : 10px;
+display : block;
+}
+.more-information {
+padding : 10px;
+display : block;
+line-height: 2em;
+font-weight : 600;
+}
+.prototype-graph {
+    width : 25vw;
+    height : 60vh;
+    background-color : white;
+}
