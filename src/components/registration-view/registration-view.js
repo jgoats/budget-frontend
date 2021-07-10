@@ -8,7 +8,9 @@ export default class Registration extends React.Component {
         this.state = {
             username: "",
             password: "",
-            email: ""
+            email: "",
+            error: "",
+            user: ""
         }
         this.getUsername = this.getUsername.bind(this);
         this.getPassword = this.getPassword.bind(this);
@@ -47,17 +49,27 @@ export default class Registration extends React.Component {
             data: data
         }).then((user) => {
             if (!user) {
-                comsole.log("user wasnt created")
-            }
-            console.log(user);
+                this.setState({
+                    user: "error, profile wasn't created"
+                })
+            } window.setTimeout(function () {
+                this.setState({
+                    user: ""
+                })
+            }.bind(this), 5000);
+            this.setState({
+                user: "success, profile was successfully created"
+            })
         }).catch((err) => {
-            console.log(err);
+            this.setState({
+                error: err
+            })
         })
     }
 
     render() {
         return (
-            <div className='login-container'>
+            <div className='register-container'>
                 <div>
                     <label className="label">Username</label>
                 </div>
@@ -73,6 +85,10 @@ export default class Registration extends React.Component {
 
                 <div>
                     <button className="login" onClick={(e) => this.register(e)}>Register</button>
+                </div>
+                <div className="message-container">
+                    <p className="error">{this.state.error}</p>
+                    <p className="userMessage">{this.state.user}</p>
                 </div>
             </div>
         )
