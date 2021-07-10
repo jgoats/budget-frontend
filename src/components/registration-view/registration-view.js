@@ -40,7 +40,7 @@ export default class Registration extends React.Component {
         }
         axios({
             method: "post",
-            url: "http://localhost:2500",
+            url: "http://localhost:2500/register",
             headers: {
                 'Content-Type': "application/json"
             },
@@ -57,16 +57,23 @@ export default class Registration extends React.Component {
 
     render() {
         return (
-            <div className="form-container">
-                <form>
-                    <label>Username</label>
+            <div className='login-container'>
+                <div>
+                    <label className="label">Username</label>
+                </div>
+                <div>
                     <input onChange={(e) => this.getUsername(e)} type="text" name="username" />
-                    <label>Password</label>
+                </div>
+                <div>
+                    <label className="label">Password</label>
+                </div>
+                <div>
                     <input onChange={(e) => this.getPassword(e)} type="text" name="password" />
-                    <label>Username</label>
-                    <input onChange={(e) => this.getEmail(e)} type="text" name="email" />
-                </form>
-                <button onClick={(e) => this.register(e)}>Register</button>
+                </div>
+
+                <div>
+                    <button className="login" onClick={(e) => this.register(e)}>Register</button>
+                </div>
             </div>
         )
     }
