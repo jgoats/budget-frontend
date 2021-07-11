@@ -1,6 +1,8 @@
 import React from "react";
 import "./registration.scss";
 import axios from "axios";
+import Check from "../../images/checkmark.svg";
+import Cancel from "../../images/cancel.svg";
 
 export default class Registration extends React.Component {
     constructor() {
@@ -10,7 +12,11 @@ export default class Registration extends React.Component {
             password: "",
             email: "",
             error: "",
-            user: ""
+            user: "",
+            usernameLength: Cancel,
+            passwordLength: Cancel,
+            passwordSpecialCharacter: Cancel,
+            passwordCapitalLetter: Cancel,
         }
         this.getUsername = this.getUsername.bind(this);
         this.getPassword = this.getPassword.bind(this);
@@ -18,14 +24,59 @@ export default class Registration extends React.Component {
         this.register = this.register.bind(this);
     }
     getUsername(e) {
+        let value = e.target.value;
         this.setState({
-            username: e.target.value
+            username: value
         })
+        if (value.length < 5) {
+            this.setState({
+                usernameLength: Cancel
+            })
+        }
+        else {
+            this.setState({
+                usernameLength: Check
+            })
+        }
     }
     getPassword(e) {
+        let value = e.target.value;
+        var specialCharacter = /^(?=.*[0-9_\W]).+$/;
+        var capitalCharacter = /^(?=.*[A-Z]).+$/;
         this.setState({
-            password: e.target.value
+            password: value
         })
+        if (value.length < 8) {
+            this.setState({
+                passwordLength: Cancel
+            })
+        }
+        else {
+            this.setState({
+                passwordLength: Check
+            })
+        }
+        if (value.match(specialCharacter)) {
+            this.setState({
+                passwordSpecialCharacter: Check
+            })
+        }
+        else {
+            this.setState({
+                passwordSpecialCharacter: Cancel
+            })
+        }
+        if (value.match(capitalCharacter)) {
+            this.setState({
+                passwordCapitalLetter: Check
+            })
+        }
+        else {
+            this.setState({
+                passwordCapitalLetter: Cancel
+            })
+        }
+
     }
     getEmail(e) {
         this.setState({
@@ -49,9 +100,12 @@ export default class Registration extends React.Component {
             data: data
         }).then((user) => {
             if (!user) {
-                this.setState({
-                    user: "error, profile wasn't created"
-                })
+                window.setTimeout(function () {
+                    this.setState({
+                        user: "error, profile wasn't created"
+                    })
+                }.bind(this), 5000)
+
             } window.setTimeout(function () {
                 this.setState({
                     user: ""
@@ -69,26 +123,52 @@ export default class Registration extends React.Component {
 
     render() {
         return (
-            <div className='register-container'>
-                <div>
-                    <label className="label">Username</label>
-                </div>
-                <div>
-                    <input onChange={(e) => this.getUsername(e)} type="text" name="username" />
-                </div>
-                <div>
-                    <label className="label">Password</label>
-                </div>
-                <div>
-                    <input onChange={(e) => this.getPassword(e)} type="text" name="password" />
-                </div>
+            <div className="registration-container">
+                <div className='register-container'>
+                    <div>
+                        <label className="label">Username</label>
+                    </div>
+                    <div>
+                        <input onChange={(e) => this.getUsername(e)} type="text" name="username" />
+                    </div>
+                    <div>
+                        <label className="label">Password</label>
+                    </div>
+                    <div>
+                        <input onChange={(e) => this.getPassword(e)} type="password" name="password" />
+                    </div>
 
-                <div>
-                    <button className="login" onClick={(e) => this.register(e)}>Register</button>
+                    <div>
+                        <button className="register" onClick={(e) => this.register(e)}>Register</button>
+                    </div>
+                    <div className="message-container">
+                        <p className="error">{this.state.error}</p>
+                        <p className="userMessage">{this.state.user}</p>
+                    </div>
                 </div>
-                <div className="message-container">
-                    <p className="error">{this.state.error}</p>
-                    <p className="userMessage">{this.state.user}</p>
+                <div className="validation-container">
+                    <div className="center-content">
+                        <div className="username-validation-container">
+                            <div className="inline">
+                                <p>Username length must be at least 5 characters long</p>
+                                <img className="validation-icon" src={this.state.usernameLength} />
+                            </div>
+                        </div>
+                        <div className="password-validation-container">
+                            <div className="inline">
+                                <p>Password length must be at least 8 characters long</p>
+                                <img className="validation-icon" src={this.state.passwordLength} />
+                            </div>
+                            <div className="inline">
+                                <p>Password must container a number or special character</p>
+                                <img className="validation-icon" src={this.state.passwordSpecialCharacter} />
+                            </div>
+                            <div className="inline">
+                                <p>Password must contain a capital letter</p>
+                                <img className="validation-icon" src={this.state.passwordCapitalLetter} />
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         )
