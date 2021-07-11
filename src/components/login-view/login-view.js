@@ -9,6 +9,8 @@ export default class Login extends React.Component {
             username: "",
             password: "",
             token: "",
+            user: "",
+            error: ""
         }
         this.getUsername = this.getUsername.bind(this);
         this.getPassword = this.getPassword.bind(this);
@@ -40,17 +42,36 @@ export default class Login extends React.Component {
             data: data
         }).then((user) => {
             if (!user) {
-                console.log("user wasnt logged in");
+                window.setTimeout(function () {
+                    this.setState({
+                        user: ""
+                    })
+                }.bind(this), 5000)
+                this.setState({
+                    user: "User does not exist"
+                });
             }
             if (user) {
+                window.setTimeout(function () {
+                    this.setState({
+                        user: ""
+                    })
+                }.bind(this), 5000);
                 this.setState({
-                    token: user.data.token
+                    token: user.data.token,
+                    user: `${user.username} is logged in`
                 });
-                console.log(user);
+
             }
 
         }).catch((err) => {
-            console.log(err);
+            window.setTimeout(function () {
+                this.setState({
+                    error: ""
+                })
+            }.bind(this), 5000);
+            console.log(err)
+
         })
     }
     /* getData(e) {
@@ -88,6 +109,10 @@ export default class Login extends React.Component {
 
                 <div>
                     <button className="login" onClick={(e) => this.login(e)}>Login</button>
+                </div>
+                <div className="message-container">
+                    <p className="error">{this.state.error}</p>
+                    <p className="userMessage">{this.state.user}</p>
                 </div>
             </div>
         )

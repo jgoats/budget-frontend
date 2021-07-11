@@ -1,28 +1,34 @@
 .login-container {
-   width : 60vw;
-   background-color : black;
-   opacity : 0.9;
-   display : grid;
-   grid-template-columns : 1fr;
-   grid-template-rows : repeat(20px , 6);
-   margin-left : 20vw;
-   margin-right : 20vw;
-   text-align : center;
-   position : absolute;
-   top : 50%;
-   transform : translateY(calc(-50% + 25px));
-   div {
-       display : flex;
-       align-items: center;
-       justify-content: center;
-   }
+    background-color : black;
+    margin-top : 60px;
+    text-align : center;
+    margin-left : 20%;
+    margin-right : 20%;
+    display : grid;
+    grid-template-columns : 1fr;
+    grid-template-rows : repeat(6, 12vh);
+    height : 72vh;
+    div {
+        position : relative;
+        top : 50%;
+    }
+    div label , button , input {
+     position : relative;
+     top : 50%;
+     transform : translateY(-50%);
+    }
 }
 .label {
     color : white;
 }
 .login {
-    background-color : rgb(168, 217, 240);
-    padding : 5px;
-    border : none;
-    font-weight : bold;
+    background-color : rgb(87, 189, 69);
+     padding : 5px 15px 5px 15px;
+     border : none;
+     color : white;
+     border-radius : 15px;
+}
+.login:hover {
+    background-color : rgb(62, 160, 45);
+    cursor: pointer;
 }
