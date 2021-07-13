@@ -16,7 +16,7 @@ export default class Registration extends React.Component {
             usernameLength: Cancel,
             passwordLength: Cancel,
             passwordSpecialCharacter: Cancel,
-            passwordCapitalLetter: Cancel,
+            passwordCapitalLetter: Cancel
         }
         this.getUsername = this.getUsername.bind(this);
         this.getPassword = this.getPassword.bind(this);
@@ -84,41 +84,89 @@ export default class Registration extends React.Component {
         })
     }
     register(e) {
-        const { username, password, email } = this.state;
+        const { username, password, email, usernameLength,
+            passwordLength, passwordCapitalLetter, passwordSpecialCharacter } = this.state;
         e.preventDefault();
         let data = {
             username: username,
             password: password,
             email: email
         }
-        axios({
-            method: "post",
-            url: "http://localhost:2500/register",
-            headers: {
-                'Content-Type': "application/json"
-            },
-            data: data
-        }).then((user) => {
-            if (!user) {
-                window.setTimeout(function () {
+        if (passwordLength !== Cancel && passwordCapitalLetter !== Cancel && usernameLength !== Cancel
+            && passwordSpecialCharacter !== Cancel) {
+            axios({
+                method: "post",
+                url: "http://localhost:2500/register",
+                headers: {
+                    'Content-Type': "application/json"
+                },
+                data: data
+            }).then((user) => {
+                if (!user) {
                     this.setState({
-                        user: "error, profile wasn't created"
-                    })
-                }.bind(this), 5000)
+                        user: "error, profile wasn't created",
+                        username: "",
+                        password: ""
+                    });
+                    window.setTimeout(function () {
+                        this.setState({
+                            user: ""
+                        })
+                    }.bind(this), 5000);
+                }
+                if (user) {
+                    if (user.data.error !== "user already exists") {
+                        this.setState({
+                            user: "success, profile was successfully created",
+                            username: "",
+                            password: ""
+                        })
+                        window.setTimeout(function () {
+                            this.setState({
+                                user: ""
+                            })
+                        }.bind(this), 5000)
+                    } else {
+                        this.setState({
+                            user: "user already exists",
+                            username: ""
+                        })
+                        window.setTimeout(function () {
+                            this.setState({
+                                user: ""
+                            })
 
-            } window.setTimeout(function () {
+                        }.bind(this), 5000);
+                    }
+
+
+                }
+
+            }).catch((err) => {
+                if (err) {
+                    console.log(err);
+                    this.setState({
+                        error: "there was an error"
+                    })
+                    window.setTimeout(function () {
+                        this.setState({
+                            error: ""
+                        })
+                    }.bind(this), 5000);
+                }
+            })
+
+        }
+        else {
+            this.setState({
+                error: "please follow all requirements before submitting"
+            })
+            window.setTimeout(function () {
                 this.setState({
-                    user: ""
+                    error: ""
                 })
             }.bind(this), 5000);
-            this.setState({
-                user: "success, profile was successfully created"
-            })
-        }).catch((err) => {
-            this.setState({
-                error: err
-            })
-        })
+        }
     }
 
     render() {
@@ -129,13 +177,13 @@ export default class Registration extends React.Component {
                         <label className="label">Username</label>
                     </div>
                     <div>
-                        <input onChange={(e) => this.getUsername(e)} type="text" name="username" />
+                        <input value={this.state.username} onChange={(e) => this.getUsername(e)} type="text" name="username" />
                     </div>
                     <div>
                         <label className="label">Password</label>
                     </div>
                     <div>
-                        <input onChange={(e) => this.getPassword(e)} type="password" name="password" />
+                        <input value={this.state.password} onChange={(e) => this.getPassword(e)} type="password" name="password" />
                     </div>
 
                     <div>
