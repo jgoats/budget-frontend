@@ -44,7 +44,9 @@ export default class Login extends React.Component {
             if (!user) {
                 window.setTimeout(function () {
                     this.setState({
-                        user: ""
+                        user: "",
+                        username: "",
+                        password: ""
                     })
                 }.bind(this), 5000)
                 this.setState({
@@ -52,16 +54,62 @@ export default class Login extends React.Component {
                 });
             }
             if (user) {
-                window.setTimeout(function () {
+                console.log(user.data.user);
+                if (user.data.user === false) {
                     this.setState({
-                        user: ""
+                        user: "user does not exist",
+                        username: "",
+                        password: ""
                     })
-                }.bind(this), 5000);
-                this.setState({
-                    token: user.data.token,
-                    user: `${user.username} is logged in`
-                });
-
+                    window.setTimeout(function () {
+                        this.setState({
+                            user: ""
+                        })
+                    }.bind(this), 5000);
+                } else if (user.data.password === false) {
+                    this.setState({
+                        user: "password is incorrect",
+                        username: "",
+                        password: ""
+                    })
+                    window.setTimeout(function () {
+                        this.setState({
+                            user: ""
+                        })
+                    }.bind(this), 5000);
+                }
+                else {
+                    window.setTimeout(function () {
+                        this.setState({
+                            user: "",
+                        })
+                    }.bind(this), 5000);
+                    this.setState({
+                        token: user.data.token,
+                        user: `${user.data.username} is logged in`,
+                        username: "",
+                        password: ""
+                    });
+                    axios({
+                        method: "get",
+                        url: "http://localhost:2500/profile",
+                        data: {
+                            token: this.state.token
+                        },
+                        methods: {
+                            "content/type": "application/json"
+                        }
+                    }).then((page) => {
+                        if (page) {
+                            console.log(page);
+                        }
+                        else {
+                            console.log("page doesnt exist");
+                        }
+                    }).catch((err) => {
+                        console.log(err)
+                    })
+                }
             }
 
         }).catch((err) => {
@@ -98,13 +146,13 @@ export default class Login extends React.Component {
                     <label className="label">Username</label>
                 </div>
                 <div>
-                    <input onChange={(e) => this.getUsername(e)} type="text" name="username" />
+                    <input value={this.state.username} onChange={(e) => this.getUsername(e)} type="text" name="username" />
                 </div>
                 <div>
                     <label className="label">Password</label>
                 </div>
                 <div>
-                    <input onChange={(e) => this.getPassword(e)} type="text" name="password" />
+                    <input value={this.state.password} onChange={(e) => this.getPassword(e)} type="text" name="password" />
                 </div>
 
                 <div>
