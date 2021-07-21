@@ -1,6 +1,8 @@
 import React from "react";
 import "./login.scss";
 import axios from "axios";
+import Nav from "../nav/nav.js";
+import "react-router-dom";
 
 export default class Login extends React.Component {
     constructor() {
@@ -10,7 +12,8 @@ export default class Login extends React.Component {
             password: "",
             token: "",
             user: "",
-            error: ""
+            error: "",
+
         }
         this.getUsername = this.getUsername.bind(this);
         this.getPassword = this.getPassword.bind(this);
@@ -85,30 +88,12 @@ export default class Login extends React.Component {
                         })
                     }.bind(this), 5000);
                     this.setState({
-                        token: user.data.token,
                         user: `${user.data.username} is logged in`,
+                        token: user.data.token,
                         username: "",
                         password: ""
                     });
-                    axios({
-                        method: "get",
-                        url: "http://localhost:2500/profile",
-                        data: {
-                            token: this.state.token
-                        },
-                        methods: {
-                            "content/type": "application/json"
-                        }
-                    }).then((page) => {
-                        if (page) {
-                            console.log(page);
-                        }
-                        else {
-                            console.log("page doesnt exist");
-                        }
-                    }).catch((err) => {
-                        console.log(err)
-                    })
+                    this.props.getData([user.data.username, user.data.token]);
                 }
             }
 
@@ -122,45 +107,48 @@ export default class Login extends React.Component {
 
         })
     }
-    /* getData(e) {
-         e.preventDefault();
-         axios({
-             method: "get",
-             url: "http://localhost:2500/users",
-             headers: { "Authorization": `Bearer ` + this.state.token },
-         }).then((result) => {
-             if (result) console.log(result);
-             else {
-                 console.log("no result");
-             }
-         }).catch((err) => {
-             console.log("authorization denied");
-         })
-     }*/
+    getData(e) {
+        e.preventDefault();
+        axios({
+            method: "get",
+            url: "http://localhost:2500/users",
+            headers: { "Authorization": `Bearer ` + this.state.token },
+        }).then((result) => {
+            if (result) console.log(result);
+            else {
+                console.log("no result");
+            }
+        }).catch((err) => {
+            console.log("authorization denied");
+        })
+    }
 
     render() {
         console.log(this.state.token);
         return (
-            <div className='login-container'>
-                <div>
-                    <label className="label">Username</label>
-                </div>
-                <div>
-                    <input value={this.state.username} onChange={(e) => this.getUsername(e)} type="text" name="username" />
-                </div>
-                <div>
-                    <label className="label">Password</label>
-                </div>
-                <div>
-                    <input value={this.state.password} onChange={(e) => this.getPassword(e)} type="text" name="password" />
-                </div>
+            <div>
+                <Nav />
+                <div className='login-container'>
+                    <div>
+                        <label className="label">Username</label>
+                    </div>
+                    <div>
+                        <input value={this.state.username} onChange={(e) => this.getUsername(e)} type="text" name="username" />
+                    </div>
+                    <div>
+                        <label className="label">Password</label>
+                    </div>
+                    <div>
+                        <input value={this.state.password} onChange={(e) => this.getPassword(e)} type="text" name="password" />
+                    </div>
 
-                <div>
-                    <button className="login" onClick={(e) => this.login(e)}>Login</button>
-                </div>
-                <div className="message-container">
-                    <p className="error">{this.state.error}</p>
-                    <p className="userMessage">{this.state.user}</p>
+                    <div>
+                        <button className="login" onClick={(e) => this.login(e)}>Login</button>
+                    </div>
+                    <div className="message-container">
+                        <p className="error">{this.state.error}</p>
+                        <p className="userMessage">{this.state.user}</p>
+                    </div>
                 </div>
             </div>
         )
