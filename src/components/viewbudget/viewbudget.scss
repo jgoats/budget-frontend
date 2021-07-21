@@ -1,0 +1,65 @@
+.view-budget-container {
+   width : 80vw;
+   height : calc(100vh - 100px);
+   border : 2px solid red;
+   display : flex;
+   align-items : center;
+   margin-left : 10vw;
+   margin-right : 10vw;
+}
+.envelopes {
+    width : calc(100vw - 400px);
+    border : 2px solid green;
+    height : 100%;
+   display : grid;
+   grid-template-columns : 1fr;
+   grid-template-rows : auto;
+}
+.form-label-container {
+    background-color : rgb(255, 255, 255);
+}
+.label-container {
+display : flex;
+align-items : center;
+padding : 0px;
+height : 30px;
+font-size : 20px;
+margin-bottom : 5px;
+background-color :aquamarine;
+}
+.label-image {
+    width : 20px;
+    height : 20px;
+    margin-left : 10px;
+    position : absolute;
+    left : 50%;
+}
+.envelope-label {
+    color : rgb(9, 25, 27);
+    font-weight : bold;
+    position : relative;
+    left : 25%;
+}
+.thelabel {
+   width : 50%;
+   border : 1px solid red;
+}
+
+
+.view-budget-graph {
+    min-width : 300px;
+    min-height : 300px;
+    width : 400px;
+    height : 400px;
+    max-width : 600px;
+    max-height : 600px;
+    border : 2px solid purple;
+   
+}
+.envelope-input {
+    display : block;
+    background-color : rgb(255, 255, 255);
+    border-bottom : 2px solid black;
+    color : black;
+    outline : none;
+}
