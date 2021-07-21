@@ -2,18 +2,21 @@ import React from "react";
 import { Doughnut } from 'react-chartjs-2';
 
 export default class Graph extends React.Component {
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
     }
     render() {
+        const { labels, data } = this.props;
         return (
             <div>
                 <Doughnut data={{
-                    labels: ["food", "gasoline", "rent", "misc", "cloths"],
+                    //labels: ["food", "gasoline", "rent", "misc", "cloths"],
+                    labels: [],
                     datasets: [
                         {
                             label: "TeamA Score",
-                            data: [40, 10, 50, 30, 20],
+                            //data: [40, 10, 50, 30, 20],
+                            data: data,
                             backgroundColor: [
                                 "#DEB887",
                                 "#A9A9A9",
