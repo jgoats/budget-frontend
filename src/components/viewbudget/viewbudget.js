@@ -10,6 +10,7 @@ export default function Viewbudget(props) {
     const [budgetTotal, update] = useState(0);
     const [data, updateData] = useState([]);
     const [initialTotal, updateInitialTotal] = useState(0);
+    const [indexCounter, updateCounter] = useState(0);
     let input;
     let cost;
     let total;
@@ -34,21 +35,26 @@ export default function Viewbudget(props) {
         let string = item.parentNode.firstChild.textContent;
         let arr = string.split(" ");
         let label = arr[0];
+        let cost = parseInt(arr[arr.length - 1]);
         let parent = item.parentNode;
         let total = parseInt(budgetTotal);
         update(total);
         parent.remove();
+        data.splice(e.target.parentNode.id, 1);
+        updateData(data);
         let result = envelopes.filter(function (item) {
             if (!item.match(label)) {
                 return item;
             }
         });
         updateEnvelopes(result);
+        console.log(data);
+
     }
     function addEnvelope() {
         envelopes.push(input);
-        let dataAmount = Math.floor((parseInt(cost) / parseInt(initialTotal)) * 100);
-        updateData([...data, dataAmount]);
+        let dataAmount = parseInt(cost);
+        data.push(dataAmount);
         update(budgetTotal - parseInt(cost));
         document.getElementsByClassName("envelope-input")[0].value = "";
         let currentEnvelopes = [...envelopes];
@@ -56,6 +62,10 @@ export default function Viewbudget(props) {
         let mainContainer = document.getElementsByClassName("main-label-container")[0];
         let container = document.createElement("div");
         container.setAttribute("class", "label-container");
+        container.setAttribute("id", `${indexCounter}`);
+        updateCounter((prevState) => {
+            return prevState + 1;
+        });
         let text = document.createElement("p");
         text.setAttribute("class", "envelope-label");
         let textNode = document.createTextNode(`${envelopes[envelopes.length - 1]}  $ ${cost}`);
