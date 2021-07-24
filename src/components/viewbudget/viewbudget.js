@@ -2,107 +2,102 @@ import React from 'react'
 import UserNav from "../usernav/usernav.js";
 import Graph from "../graph/graph.js";
 import "./viewbudget.scss";
-import { useState } from "react";
 import Bin from "../../images/bin.svg";
 
-export default function Viewbudget(props) {
-    const { user, token } = props;
-    const [budgetTotal, update] = useState(0);
-    const [data, updateData] = useState([]);
-    const [initialTotal, updateInitialTotal] = useState(0);
-    const [indexCounter, updateCounter] = useState(0);
-    let input;
-    let cost;
-    let total;
-    const [envelopes, updateEnvelopes] = useState([]);
-
-    function updateInput(e) {
-        input = e.target.value;
+export default class Viewbudget extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            budgetTotal: 0,
+            envelopes: [],
+            data: []
+        }
+        this.updateTotal = this.updateTotal.bind(this);
+        this.updateCost = this.updateCost.bind(this);
+        this.updateInput = this.updateInput.bind(this);
+        this.addEnvelope = this.addEnvelope.bind(this);
+        this.setMonthlyBudget = this.setMonthlyBudget.bind(this);
+        this.handleDelete = this.handleDelete.bind(this);
+        this.total = null;
+        this.envelope = null;
+        this.cost = null;
     }
-    function updateCost(e) {
-        cost = e.target.value;
+    updateTotal(e) {
+        this.total = e.target.value;
     }
-    function updateTotal(e) {
-        total = e.target.value;
+    updateInput(e) {
+        this.envelope = e.target.value;
     }
-    function setMonthlyBudget() {
-        update(total);
-        updateInitialTotal(total);
-        total = 0;
+    updateCost(e) {
+        this.cost = e.target.value;
     }
-    function handleDelete(e) {
-        let item = e.target;
-        let string = item.parentNode.firstChild.textContent;
-        let arr = string.split(" ");
-        let label = arr[0];
-        let cost = parseInt(arr[arr.length - 1]);
-        let parent = item.parentNode;
-        let total = parseInt(budgetTotal);
-        update(total);
-        parent.remove();
-        data.splice(e.target.parentNode.id, 1);
-        updateData(data);
-        let result = envelopes.filter(function (item) {
-            if (!item.match(label)) {
-                return item;
-            }
-        });
-        updateEnvelopes(result);
-        console.log(data);
-
-    }
-    function addEnvelope() {
-        envelopes.push(input);
-        let dataAmount = parseInt(cost);
-        data.push(dataAmount);
-        update(budgetTotal - parseInt(cost));
-        document.getElementsByClassName("envelope-input")[0].value = "";
-        let currentEnvelopes = [...envelopes];
-        updateEnvelopes(currentEnvelopes);
-        let mainContainer = document.getElementsByClassName("main-label-container")[0];
-        let container = document.createElement("div");
-        container.setAttribute("class", "label-container");
-        container.setAttribute("id", `${indexCounter}`);
-        updateCounter((prevState) => {
-            return prevState + 1;
-        });
-        let text = document.createElement("p");
-        text.setAttribute("class", "envelope-label");
-        let textNode = document.createTextNode(`${envelopes[envelopes.length - 1]}  $ ${cost}`);
+    addEnvelope() {
+        this.setState({
+            envelopes: [...this.state.envelopes, this.envelope],
+            data: [...this.state.data, this.cost],
+            budgetTotal: this.state.budgetTotal - this.cost
+        })
+        this.envelope = null;
+        this.cost = null;
         document.getElementsByClassName("envelope-input")[1].value = "";
-        text.append(textNode);
-        let img = document.createElement("img");
-        img.setAttribute("src", `${Bin}`);
-        img.setAttribute("class", "label-image");
-        img.addEventListener("click", (e) => { handleDelete(e) }, false);
-        container.append(text, img);
-        mainContainer.append(container);
+        document.getElementsByClassName("envelope-input")[2].value = "";
     }
-    return (
-        <div>
-            <UserNav user={user} />
-            <div className="view-budget-container">
-                <div className="envelopes">
-                    <div className="form-label-container">
-                        <div>{budgetTotal}</div>
-                        <label>Monthly Income</label>
-                        <input className="envelope-input" onChange={(e) => updateTotal(e)} type="text" />
-                        <button onClick={setMonthlyBudget}>Set Monthly Budget</button>
-                        <label>Add An Envelope</label>
-                        <input className="envelope-input" onChange={(e) => updateInput(e)} type="text" />
-                        <button onClick={addEnvelope}>Add</button>
-                        <label>Add A Price</label>
-                        <input className="envelope-input" onChange={(e) => updateCost(e)} type="text" />
+    setMonthlyBudget() {
+        this.setState({
+            budgetTotal: this.total,
+        })
+        this.total = null;
+        document.getElementsByClassName("envelope-input")[0].value = "";
+    }
+    handleDelete(e, index) {
+        let string = e.target.parentNode.children[0].innerHTML;
+        let arr = string.split("  ");
+        let deletedCost = parseInt(arr[1].replace("$", ""));
+        let envelopesClone = [...this.state.envelopes];
+        let dataClone = [...this.state.data];
+        envelopesClone.splice(index, 1);
+        dataClone.splice(index, 1);
+        this.setState({
+            envelopes: envelopesClone,
+            data: dataClone,
+            budgetTotal: this.state.budgetTotal + deletedCost
+        })
+    }
+    render() {
+        const { user, token } = this.props;
+        const { budgetTotal, envelopes, data } = this.state;
+        return (
+            <div>
+                <UserNav user={user} />
+                <div className="view-budget-container">
+                    <div className="envelopes">
+                        <div className="form-label-container">
+                            <div>{budgetTotal}</div>
+                            <label>Monthly Income</label>
+                            <input className="envelope-input" type="text" onChange={(e) => this.updateTotal(e)} />
+                            <button onClick={this.setMonthlyBudget}>Set Monthly Budget</button>
+                            <label>Add An Envelope</label>
+                            <input className="envelope-input" onChange={(e) => this.updateInput(e)} type="text" />
+                            <button onClick={this.addEnvelope}>Add</button>
+                            <label>Add A Price</label>
+                            <input className="envelope-input" onChange={(e) => this.updateCost(e)} type="text" />
+                        </div>
+                        <div className="main-label-container">
+                            {
+                                envelopes.map((item, index) =>
+                                    <div key={index} className="label-container">
+                                        <p className="envelope-label">{`${item}  $${data[index]}`}</p>
+                                        <img onClick={(e) => this.handleDelete(e, index)} className="label-image" src={Bin} />
+                                    </div>)
+                            }
+                        </div>
                     </div>
-                    <div className="main-label-container">
-
+                    <div className="view-budget-graph">
+                        <Graph labels={envelopes} data={data} />
                     </div>
-                </div>
-                <div className="view-budget-graph">
-                    <Graph labels={envelopes} data={data} />
                 </div>
             </div>
-        </div>
-    )
+        )
+    }
 }
 
