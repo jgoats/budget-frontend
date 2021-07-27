@@ -1,0 +1,19 @@
+.model-main-container {
+    width : 90vw;
+    height : 90vh;
+    display : block;
+    margin-left : 5vw;
+    margin-right : 5vw;
+    box-shadow : 0px 0px 8px black;
+    position : absolute;
+    top : 58px;
+    z-index : 1;
+    background-color : white;
+}
+.model-question {
+    font-weight : bold;
+    font-size : 30px;
+    text-align : center;
+    position : relative;
+    top : 10%;
+}
