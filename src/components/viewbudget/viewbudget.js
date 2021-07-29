@@ -1,6 +1,7 @@
 import React from 'react'
 import UserNav from "../usernav/usernav.js";
 import Graph from "../graph/graph.js";
+import Model from "../model/model.js";
 import "./viewbudget.scss";
 import Bin from "../../images/bin.svg";
 
@@ -10,14 +11,19 @@ export default class Viewbudget extends React.Component {
         this.state = {
             budgetTotal: 0,
             envelopes: [],
-            data: []
+            data: [],
+            modelOn: true,
+            name: "",
+            inputData: [],
+            question: "Name for your budget?",
+            requirement: "length must be greater than 2 characters"
         }
         this.updateTotal = this.updateTotal.bind(this);
         this.updateCost = this.updateCost.bind(this);
         this.updateInput = this.updateInput.bind(this);
         this.addEnvelope = this.addEnvelope.bind(this);
-        this.setMonthlyBudget = this.setMonthlyBudget.bind(this);
         this.handleDelete = this.handleDelete.bind(this);
+        this.getData = this.getData.bind(this);
         this.total = null;
         this.envelope = null;
         this.cost = null;
@@ -32,22 +38,32 @@ export default class Viewbudget extends React.Component {
         this.cost = e.target.value;
     }
     addEnvelope() {
-        this.setState({
-            envelopes: [...this.state.envelopes, this.envelope],
-            data: [...this.state.data, this.cost],
-            budgetTotal: this.state.budgetTotal - this.cost
-        })
-        this.envelope = null;
-        this.cost = null;
-        document.getElementsByClassName("envelope-input")[1].value = "";
-        document.getElementsByClassName("envelope-input")[2].value = "";
-    }
-    setMonthlyBudget() {
-        this.setState({
-            budgetTotal: this.total,
-        })
-        this.total = null;
-        document.getElementsByClassName("envelope-input")[0].value = "";
+        if (this.state.budgetTotal - this.cost == 0) {
+            this.state.data[0] = this.state.budgetTotal - this.cost;
+            this.setState({
+                envelopes: [...this.state.envelopes, this.envelope],
+                data: [...this.state.data, this.cost],
+                budgetTotal: 0
+            })
+            this.envelope = null;
+            this.cost = null;
+            document.getElementsByClassName("envelope-input")[0].value = "";
+            document.getElementsByClassName("envelope-input")[1].value = "";
+        }
+        else {
+            console.log("budget is not 0 yet")
+            this.state.data[0] = this.state.budgetTotal - this.cost;
+            this.setState({
+                envelopes: [...this.state.envelopes, this.envelope],
+                data: [...this.state.data, this.cost],
+                budgetTotal: this.state.budgetTotal - this.cost
+            })
+            this.envelope = null;
+            this.cost = null;
+            document.getElementsByClassName("envelope-input")[0].value = "";
+            document.getElementsByClassName("envelope-input")[1].value = "";
+        }
+
     }
     handleDelete(e, index) {
         let string = e.target.parentNode.children[0].innerHTML;
@@ -55,49 +71,87 @@ export default class Viewbudget extends React.Component {
         let deletedCost = parseInt(arr[1].replace("$", ""));
         let envelopesClone = [...this.state.envelopes];
         let dataClone = [...this.state.data];
+        dataClone[0] = dataClone[0] + deletedCost;
         envelopesClone.splice(index, 1);
-        dataClone.splice(index, 1);
+        dataClone.splice(index + 1, 1);
         this.setState({
             envelopes: envelopesClone,
             data: dataClone,
             budgetTotal: this.state.budgetTotal + deletedCost
         })
     }
+    getData(data) {
+        const [input, onOrOff] = data;
+        this.state.inputData.push(input);
+        const { inputData } = this.state;
+        if (onOrOff == "off") {
+            for (let i = 0; i < inputData.length; i++) {
+                if (inputData.length == 1) {
+                    this.setState({
+                        name: input,
+                        question: "Input a budget total",
+                        requirement: "Must be a number greater than 99"
+                    });
+                }
+                else if (inputData.length == 2) {
+                    const [budgetName, budgetAmount] = this.state.inputData;
+                    this.setState({
+                        modelOn: false,
+                        budgetTotal: budgetAmount,
+                        name: budgetName,
+                        data: [budgetAmount]
+                    });
+                }
+            }
+
+        }
+    }
     render() {
         const { user, token } = this.props;
-        const { budgetTotal, envelopes, data } = this.state;
-        return (
-            <div>
-                <UserNav user={user} />
-                <div className="view-budget-container">
-                    <div className="envelopes">
-                        <div className="form-label-container">
-                            <div>{budgetTotal}</div>
-                            <label>Monthly Income</label>
-                            <input className="envelope-input" type="text" onChange={(e) => this.updateTotal(e)} />
-                            <button onClick={this.setMonthlyBudget}>Set Monthly Budget</button>
-                            <label>Add An Envelope</label>
-                            <input className="envelope-input" onChange={(e) => this.updateInput(e)} type="text" />
-                            <button onClick={this.addEnvelope}>Add</button>
-                            <label>Add A Price</label>
-                            <input className="envelope-input" onChange={(e) => this.updateCost(e)} type="text" />
+        const { budgetTotal, envelopes, data, name } = this.state;
+        if (this.state.modelOn) {
+            return (
+                <Model question={this.state.question}
+                    requirement={this.state.requirement} getData={this.getData}> </Model>
+            )
+        } else {
+            return (
+                <div>
+                    <UserNav user={user} />
+                    <div className="view-budget-container">
+                        <div className="envelopes">
+                            <div className="form-label-container">
+                                <div>{name}</div>
+                                <div>{budgetTotal}</div>
+                                <div>{envelopes}</div>
+                                <label>Add An Envelope</label>
+                                <input className="envelope-input" onChange={(e) => this.updateInput(e)} type="text" />
+                                <button onClick={this.addEnvelope}>Add</button>
+                                <label>Add A Price</label>
+                                <input className="envelope-input" onChange={(e) => this.updateCost(e)} type="text" />
+                            </div>
+                            <div className="main-label-container">
+                                {
+                                    envelopes.map((item, index) =>
+
+                                        <div key={index} className="label-container">
+                                            <p className="envelope-label">{`${item}  $${data[index + 1]}`}</p>
+                                            <img onClick={(e) => this.handleDelete(e, index)} className="label-image" src={Bin} />
+                                        </div>
+                                    )
+
+                                }
+                            </div>
                         </div>
-                        <div className="main-label-container">
-                            {
-                                envelopes.map((item, index) =>
-                                    <div key={index} className="label-container">
-                                        <p className="envelope-label">{`${item}  $${data[index]}`}</p>
-                                        <img onClick={(e) => this.handleDelete(e, index)} className="label-image" src={Bin} />
-                                    </div>)
-                            }
+                        <div className="view-budget-graph">
+                            <Graph labels={envelopes} data={data} />
                         </div>
-                    </div>
-                    <div className="view-budget-graph">
-                        <Graph labels={envelopes} data={data} />
                     </div>
                 </div>
-            </div>
-        )
+            )
+        }
+
     }
+
 }
 
