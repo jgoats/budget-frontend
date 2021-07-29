@@ -12,6 +12,12 @@ export default class Viewbudget extends React.Component {
             budgetTotal: 0,
             envelopes: [],
             data: [],
+            borders: [`rgb(0,0,0)`],
+            colors: [`rgb(90,195,87)`, `rgb(87,134,175)`, `rgb(105,186,143)`,
+                `rgb(227,242,21)`, `rgb(229,148,87)`, `rgb(186,105,197)`, `rgb(132,115,186)`,
+                `rgb(21,152,148)`, `rgb(84,118,112)`, `rgb(191,178,129)`, `rgb(210,178,50)`,
+                `rgb(31,188,110)`, `rgb(154,89,198)`, `rgb(153,146,174)`, `rgb(19,138,118)`,
+                `rgb(87,175,96)`],
             modelOn: true,
             name: "",
             inputData: [],
@@ -52,11 +58,13 @@ export default class Viewbudget extends React.Component {
         }
         else {
             console.log("budget is not 0 yet")
+            let newBorder = 'rgb(0,0,0)';
             this.state.data[0] = this.state.budgetTotal - this.cost;
             this.setState({
                 envelopes: [...this.state.envelopes, this.envelope],
                 data: [...this.state.data, this.cost],
-                budgetTotal: this.state.budgetTotal - this.cost
+                budgetTotal: this.state.budgetTotal - this.cost,
+                borders: [...this.state.borders, newBorder]
             })
             this.envelope = null;
             this.cost = null;
@@ -108,7 +116,7 @@ export default class Viewbudget extends React.Component {
     }
     render() {
         const { user, token } = this.props;
-        const { budgetTotal, envelopes, data, name } = this.state;
+        const { envelopes, budgetTotal, data, colors, name, borders } = this.state;
         if (this.state.modelOn) {
             return (
                 <Model question={this.state.question}
@@ -123,7 +131,6 @@ export default class Viewbudget extends React.Component {
                             <div className="form-label-container">
                                 <div>{name}</div>
                                 <div>{budgetTotal}</div>
-                                <div>{envelopes}</div>
                                 <label>Add An Envelope</label>
                                 <input className="envelope-input" onChange={(e) => this.updateInput(e)} type="text" />
                                 <button onClick={this.addEnvelope}>Add</button>
@@ -133,8 +140,7 @@ export default class Viewbudget extends React.Component {
                             <div className="main-label-container">
                                 {
                                     envelopes.map((item, index) =>
-
-                                        <div key={index} className="label-container">
+                                        <div style={{ "backgroundColor": `${this.state.colors[index + 1]}` }} key={index} className="label-container">
                                             <p className="envelope-label">{`${item}  $${data[index + 1]}`}</p>
                                             <img onClick={(e) => this.handleDelete(e, index)} className="label-image" src={Bin} />
                                         </div>
@@ -144,7 +150,7 @@ export default class Viewbudget extends React.Component {
                             </div>
                         </div>
                         <div className="view-budget-graph">
-                            <Graph labels={envelopes} data={data} />
+                            <Graph blackBorder={borders} backgroundColor={colors} data={data} />
                         </div>
                     </div>
                 </div>
