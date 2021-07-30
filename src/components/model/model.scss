@@ -1,28 +1,101 @@
 .model-main-container {
-    width : 90vw;
-    height : 90vh;
-    display : block;
-    margin-left : 5vw;
-    margin-right : 5vw;
+    width : 100vw;
+    height : 100vh;
     box-shadow : 0px 0px 8px black;
     position : absolute;
-    top : 58px;
     z-index : 1;
-    background-color : white;
-}
-.model-question {
-    font-weight : bold;
-    font-size : 30px;
-    text-align : center;
-    position : relative;
-    margin-top : 30px;
-}
-.model-message {
-    font-weight : bold;
-    font-size : 25px;
-    color : red;
+    background : url("../../images/Flat-Mountains.svg");
+    background-size : cover;
+    display : grid;
+    grid-template-columns : 1fr 1fr;
+    grid-template-rows : 100vh;
 
 }
-.model-button {
+.model-question {
+    font-weight: bolder;
+    font-size : 30px;
+    left : 50%;
+    transform : translateX(-50%);
+    position : absolute;
+    top : 10%;
+
+
+}
+.model-message {
+    color : rgb(68, 4, 4);
+    box-shadow : none;
+    margin-bottom : 20px;
+    font-size : 22px;
+    width : 100%;
+    text-align : center;
     display : block;
+    margin-right : auto;
+    margin-left : auto;
+    font-weight : bold;
+}
+.model-input {
+    display : block;
+    font-size : 25px;
+    background-color : white;
+    box-shadow : 0px 0px 2px black;
+    color : black;
+    margin : 20px;
+    border : none;
+    margin-right : auto;
+    margin-left : auto;
+    width : 70%;
+    border-radius : 5px;
+    font-family: 'Oxygen', sans-serif;
+}
+.model-button {
+    display : flex;
+    align-items : center;
+    justify-content: center;
+    margin-left : auto;
+    margin-right : auto;
+    width : 90px;
+    padding : 5px 8px 5px 8px;
+    font-size : 20px;
+    font-weight : bolder;
+    box-shadow : 0px 0px 3px black;
+    border : none;
+    background-color : rgb(83, 187, 79);
+    margin-bottom : 10px;
+    border-radius : 5px;
+}
+.model-button:hover {
+    background-color : rgb(45, 110, 43);
+    cursor : pointer;
+}
+.model-input-container {
+    //here
+display : flex;
+align-items : center;
+justify-content: center;
+height : 100vh;
+
+}
+.model-input-container div {
+    display : block;
+    width : 40vw;
+}
+.model-btn-container {
+    //here
+display : flex;
+align-items : center;
+justify-content : center;
+}
+.model-validation-technique {
+    display : flex;
+    align-items : center;
+    justify-content : center;
+}
+.model-paragraph {
+    margin-right : 20px;
+    font-size : 25px;
+    font-weight : bolder;
+}
+.model-image {
+    width : 35px;
+    height : 35px;
 }

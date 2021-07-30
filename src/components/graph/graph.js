@@ -1,5 +1,5 @@
 import React from "react";
-import { Doughnut } from 'react-chartjs-2';
+import { Pie, Doughnut } from 'react-chartjs-2';
 
 export default class Graph extends React.Component {
     constructor(props) {

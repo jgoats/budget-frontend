@@ -62,6 +62,11 @@ export default class Model extends React.Component {
                 this.setState({
                     message: "please provide a length greater than 2 characters"
                 })
+                window.setTimeout(function () {
+                    this.setState({
+                        message: ""
+                    })
+                }.bind(this), 4000)
             }
             else {
                 let value = this.state.input;
@@ -76,8 +81,13 @@ export default class Model extends React.Component {
         else if (this.props.question == "Input a budget total") {
             if (this.state.img === Cancel) {
                 this.setState({
-                    message: "please input a number larger than 0"
+                    message: "please input a number larger than 99"
                 })
+                window.setTimeout(function () {
+                    this.setState({
+                        message: ""
+                    })
+                }.bind(this), 4000)
             }
             else {
                 let value = this.state.input;
@@ -97,14 +107,22 @@ export default class Model extends React.Component {
         return (
             <div className="model-main-container">
                 <div className="model-question">{question}</div>
-                <input value={this.state.input} onChange={(e) => this.getInput(e)} type="text" />
-                <div className="model-message">{this.state.message}</div>
-                <button className="model-button" onClick={this.validateInput}>click</button>
+                <div className="model-input-container">
+                    {this.props.question !== "Input a budget total" ? <div>
+                        <input className="model-input" value={this.state.input} onChange={(e) => this.getInput(e)} type="text" />
+                        <div className="model-message">{this.state.message}</div>
+                        <button className="model-button" onClick={this.validateInput}>Submit</button>
+                    </div> : <div>
+                        <input className="model-input" value={this.state.input} placeHolder="$" onChange={(e) => this.getInput(e)} type="text" />
+                        <div className="model-message">{this.state.message}</div>
+                        <button className="model-button" onClick={this.validateInput}>Submit</button>
+                    </div>}
+                </div>
                 <div className="model-btn-container">
                     <div className="model-validation-container">
                         <div className="model-validation-technique">
-                            <p>{this.props.requirement}</p>
-                            <img src={this.state.img} />
+                            <p className="model-paragraph">{this.props.requirement}</p>
+                            <img className="model-image" src={this.state.img} />
                         </div>
                     </div>
                 </div>
