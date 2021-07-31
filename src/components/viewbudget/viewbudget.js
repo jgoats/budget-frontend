@@ -4,6 +4,7 @@ import Graph from "../graph/graph.js";
 import Model from "../model/model.js";
 import "./viewbudget.scss";
 import Bin from "../../images/bin.svg";
+import axios from "axios";
 
 export default class Viewbudget extends React.Component {
     constructor(props) {
@@ -34,6 +35,7 @@ export default class Viewbudget extends React.Component {
         this.getData = this.getData.bind(this);
         this.changeToPie = this.changeToPie.bind(this);
         this.changeToDough = this.changeToDough.bind(this);
+        this.submitBudget = this.submitBudget.bind(this);
         this.total = null;
         this.envelope = null;
         this.cost = null;
@@ -46,6 +48,32 @@ export default class Viewbudget extends React.Component {
     changeToPie() {
         this.setState({
             graph: "Pie"
+        })
+    }
+    submitBudget(e) {
+        let dataClone = [...this.state.data];
+        dataClone.shift();
+        e.preventDefault();
+        axios({
+            method: "post",
+            url: "http://localhost:2500/userdata",
+            headers: {
+                'Content-Type': "application/json",
+                "Authorization": `${"Bearer"} ${this.props.token}`
+            },
+            data: {
+                username: this.props.user,
+                budgetname: this.state.name,
+                data: dataClone,
+                envelopes: this.state.envelopes
+            }
+        }).then((result) => {
+            if (result) {
+                console.log(result)
+            }
+            else {
+                console.log("error")
+            }
         })
     }
     updateTotal(e) {
@@ -171,7 +199,7 @@ export default class Viewbudget extends React.Component {
                                 <div className="model-message">{this.state.message}</div>
                                 <button className="model-button" onClick={this.addEnvelope}>Add</button>
                                 {
-                                    budgetTotal === 0 ? <div className="edit-budget-submit">Submit Your Budget</div> : <div className="edit-budget-hide"></div>
+                                    budgetTotal === 0 ? <div onClick={(e) => this.submitBudget(e)} className="edit-budget-submit">Submit Your Budget</div> : <div className="edit-budget-hide"></div>
                                 }
                             </div>
                         </div>
