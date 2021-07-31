@@ -25,6 +25,7 @@ export default class Viewbudget extends React.Component {
             question: "Name for your budget?",
             requirement: "length must be greater than 2 characters",
             message: "",
+            result: "",
             graph: "Pie"
         }
         this.updateTotal = this.updateTotal.bind(this);
@@ -69,10 +70,14 @@ export default class Viewbudget extends React.Component {
             }
         }).then((result) => {
             if (result) {
-                console.log(result)
+                this.setState({
+                    result: "Your Budget Was Successfully Created"
+                })
             }
             else {
-                console.log("error")
+                this.setState({
+                    result: "error, please try again"
+                })
             }
         })
     }
@@ -199,7 +204,8 @@ export default class Viewbudget extends React.Component {
                                 <div className="model-message">{this.state.message}</div>
                                 <button className="model-button" onClick={this.addEnvelope}>Add</button>
                                 {
-                                    budgetTotal === 0 ? <div onClick={(e) => this.submitBudget(e)} className="edit-budget-submit">Submit Your Budget</div> : <div className="edit-budget-hide"></div>
+                                    budgetTotal === 0 ? <div><div onClick={(e) => this.submitBudget(e)} className="edit-budget-submit">Submit Your Budget</div><div className="edit-budget-result">{this.state.result}</div> </div>
+                                        : <div className="edit-budget-hide"></div>
                                 }
                             </div>
                         </div>
