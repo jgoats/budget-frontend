@@ -1,0 +1,152 @@
+
+.edit-budget-container {
+   width : 100vw;
+   display : grid;
+   grid-template-columns : 2fr 2fr 1fr;
+   grid-template-rows : auto;
+   font-family: 'Oxygen', sans-serif;
+   grid-gap : 5px;
+   height : 70vh;
+}
+.edit-budget-data-container {
+    display : block;
+    width : 100%;
+    padding : 0px;
+}
+.edit-budget-data {
+    display : block;
+    text-align : center;
+    font-size : 25px;
+    padding : 0px;
+    margin : 5px;
+}
+.envelopes {
+    height : 100%;
+   display : grid;
+   grid-template-columns : 1fr;
+   grid-template-rows : auto;
+   box-shadow : 0px 0px 7px black; 
+}
+.edit-budget-submit {
+    border : none;
+    padding : 5px 8px 5px 8px;
+    background-color : rgb(19,138,219);
+    text-align : center;
+    display : block;
+    margin-left : auto;
+    margin-right : auto;
+    width : 120px;
+    font-weight : bolder;
+    border-radius : 5px;
+    box-shadow : 0px 0px 2px black;
+    position : relative;
+}
+.edit-budget-submit:hover {
+    cursor : pointer;
+    background-color : rgb(29, 97, 143);
+}
+.edit-budget-result {
+    color : rgb(17, 104, 56);
+    font-weight : bold;
+    font-size : 20px;
+    text-align : center;
+    border : none;
+    margin-top : 10px;
+}
+.edit-budget-hide {
+display : none;
+}
+.form-label-container {
+    display : flex;
+    align-items : center;
+    justify-content : center;
+    box-shadow : 0px 0px 7px black;
+    margin-left : 10px;
+}
+.label-container {
+display : flex;
+align-items : center;
+padding : 0px;
+height : 30px;
+font-size : 20px;
+margin-bottom : 5px;
+margin-top : 2.5px;
+box-shadow : 0px 0px 2px black;
+padding : 2px;
+}
+.label-image {
+    width : 20px;
+    height : 20px;
+    margin-left : 10%;
+    background-color : white;
+    border-radius : 5px;
+    padding : 5px;
+}
+.label-image:hover {
+    cursor : pointer;
+    transform:scale(1.2);
+    transition : 0.6s;
+}
+.envelope-label {
+    color : black;
+    text-align : center;
+    margin-left : 10%;
+    font-family: 'Oxygen', sans-serif;
+    background-color : white;
+    border-radius : 5px;
+    padding : 2px;
+}
+
+.edit-budget-graph {
+    box-shadow : 0px 0px 5px black;
+    margin-right : 10px;
+    display : flex;
+    flex-direction : column;
+    justify-content : center;
+}
+.edit-budget-graph div {
+    text-align : center;
+    display : inline;
+}
+.pie-graph {
+    border : none;
+    padding : 5px 8px 5px 8px;
+    box-shadow : 0px 0px 3px black;
+    background-color : rgb(18,246,155);
+    font-size : 20px;
+    margin-left : 5px;
+    margin-right : 5px;
+    text-align : center;
+}
+.pie-graph:hover {
+    cursor : pointer;
+    background-color : rgb(15, 197, 124);
+}
+.doughnut-graph {
+    border : none;
+    padding : 5px 8px 5px 8px;
+    box-shadow : 0px 0px 3px black;
+    background-color : rgb(19, 172, 248);
+    margin-left : 5px;
+    margin-right : 5px;
+    font-size : 20px;
+    text-align : center;
+}
+.doughnut-graph:hover {
+    cursor : pointer;
+    background-color : rgb(19, 148, 207);
+}
+.envelope-input {
+    display : block;
+    background-color : rgb(255, 255, 255);
+    box-shadow : 0px 0px 7px black;
+    color : black;
+    border : none;
+    outline : none;
+    margin-right : auto;
+    margin-left : auto;
+    width : 80%;
+    margin-top : 20px;
+    margin-bottom : 20px;
+    border-radius : 5px;
+}
