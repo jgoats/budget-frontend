@@ -2,13 +2,12 @@ body {
     margin : 0px;
     padding : 0px;
     box-sizing : border-box;
-    overflow-y : hidden;
     overflow-x : hidden;
+    overflow-y : hidden;
     font-family: 'Oxygen', sans-serif;
 }
 
 .main-container {
-   // background-image : url("../../images/Flat-Mountains.svg");
     width : 100vw;
     height : 100vh;
     position : relative;
