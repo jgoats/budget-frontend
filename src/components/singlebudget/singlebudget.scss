@@ -1,0 +1,56 @@
+.single-budget-container {
+    display : grid;
+    grid-template-columns : 1fr 1fr;
+    grid-gap : 20px;
+    width : 100vw;
+    height : calc(100vh - 50px);
+    box-sizing : border-box;
+    padding : 10px;
+}
+.single-budget-envelopes-container {
+    box-shadow : 0px 0px 4px black;
+    display : flex;
+    align-items : center;
+    justify-content : center;
+    flex-direction: column;
+}
+.single-budget-envelope-text {
+    font-size : 20px;
+    margin : 0px;
+    font-weight : bolder;
+    height : 100%;
+}
+.single-budget-envelope {
+    width : 70%;
+    text-align : center;
+    height: 30px;
+    padding : 3px;
+    box-shadow : 0px 0px 1px black;
+    margin : 2px auto 2px auto;
+    box-sizing : border-box;
+}
+.single-budget-graph-container {
+    display : flex;
+    align-items : center;
+    justify-content : center;
+    box-shadow : 0px 0px 4px black;
+}
+.single-budget-graph {
+    width : 70%;
+    min-width : 300px;
+    padding-bottom : 10px;
+}
+.single-budget-button {
+    padding : 5px 7px 5px 7px;
+    background-color : rgb(220, 128, 243);
+    border-radius : 3px;
+    border : none;
+    box-shadow : 0px 0px 2px black;
+    text-align : center;
+    font-size : 20px;
+    margin-top : 20px;
+}
+.single-budget-button:hover {
+    cursor: pointer;
+    background-color : rgb(206, 97, 233);
+}
