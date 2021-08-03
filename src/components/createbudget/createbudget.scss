@@ -1,5 +1,5 @@
 
-.edit-budget-container {
+.create-budget-container {
    width : 100vw;
    display : grid;
    grid-template-columns : 2fr 2fr 1fr;
@@ -8,12 +8,12 @@
    grid-gap : 5px;
    height : 70vh;
 }
-.edit-budget-data-container {
+.create-budget-data-container {
     display : block;
     width : 100%;
     padding : 0px;
 }
-.edit-budget-data {
+.create-budget-data {
     display : block;
     text-align : center;
     font-size : 25px;
@@ -27,7 +27,7 @@
    grid-template-rows : auto;
    box-shadow : 0px 0px 7px black; 
 }
-.edit-budget-submit {
+.create-budget-submit {
     border : none;
     padding : 5px 8px 5px 8px;
     background-color : rgb(19,138,219);
@@ -41,11 +41,11 @@
     box-shadow : 0px 0px 2px black;
     position : relative;
 }
-.edit-budget-submit:hover {
+.create-budget-submit:hover {
     cursor : pointer;
     background-color : rgb(29, 97, 143);
 }
-.edit-budget-result {
+.create-budget-result {
     color : rgb(17, 104, 56);
     font-weight : bold;
     font-size : 20px;
@@ -53,7 +53,7 @@
     border : none;
     margin-top : 10px;
 }
-.edit-budget-hide {
+.create-budget-hide {
 display : none;
 }
 .form-label-container {
@@ -97,14 +97,14 @@ padding : 2px;
     padding : 2px;
 }
 
-.edit-budget-graph {
+.create-budget-graph {
     box-shadow : 0px 0px 5px black;
     margin-right : 10px;
     display : flex;
     flex-direction : column;
     justify-content : center;
 }
-.edit-budget-graph div {
+.create-budget-graph div {
     text-align : center;
     display : inline;
 }

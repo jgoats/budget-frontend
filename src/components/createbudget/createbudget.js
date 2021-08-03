@@ -87,7 +87,7 @@ class Createbudget extends React.Component {
                         question: "Name for your budget?",
                         requirement: "length must be greater than 2 characters",
                     })
-                    this.props.history.push("/profile");
+                    this.props.history.push("/viewbudgets");
                 }.bind(this), 3000);
             }
             else {
@@ -208,12 +208,12 @@ class Createbudget extends React.Component {
             )
         } else {
             return (
-                <div className="edit-budget-main">
+                <div className="create-budget-main">
                     <UserNav user={user} />
-                    <div className="edit-budget-data-container">
-                        <div className="edit-budget-data">{name} : ${budgetTotal}</div>
+                    <div className="create-budget-data-container">
+                        <div className="create-budget-data">{name} : ${budgetTotal}</div>
                     </div>
-                    <div className="edit-budget-container">
+                    <div className="create-budget-container">
                         <div className="form-label-container">
                             <div>
                                 <label className="model-message">Add An Envelope</label>
@@ -223,8 +223,8 @@ class Createbudget extends React.Component {
                                 <div className="model-message">{this.state.message}</div>
                                 <button className="model-button" onClick={this.addEnvelope}>Add</button>
                                 {
-                                    budgetTotal === 0 ? <div><div onClick={(e) => this.submitBudget(e)} className="edit-budget-submit">Submit Your Budget</div><div className="edit-budget-result">{this.state.result}</div> </div>
-                                        : <div className="edit-budget-hide"></div>
+                                    budgetTotal === 0 ? <div><div onClick={(e) => this.submitBudget(e)} className="create-budget-submit">Submit Your Budget</div><div className="create-budget-result">{this.state.result}</div> </div>
+                                        : <div className="create-budget-hide"></div>
                                 }
                             </div>
                         </div>
@@ -241,7 +241,7 @@ class Createbudget extends React.Component {
                                 }
                             </div>
                         </div>
-                        <div className="edit-budget-graph">
+                        <div className="create-budget-graph">
                             <div>
                                 <div onClick={this.changeToPie} className="pie-graph">Pie</div>
                                 <div onClick={this.changeToDough} className="doughnut-graph">Doughnut</div>
