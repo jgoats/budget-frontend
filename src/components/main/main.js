@@ -4,14 +4,13 @@ import Registration from "../registration-view/registration-view.js";
 import Login from "../login-view/login-view.js";
 import { useState } from "react";
 import PrivateRoute from "../utils/PrivateRoute.js"
-import Profile from "../profile/profile.js";
 import { Route, withRouter } from "react-router-dom";
 import "react-router-dom";
 import "./main.scss";
 import { useEffect } from "react";
-import Viewbudget from "../viewbudget/viewbudget.js";
-import Editbudget from "../editbudget/editbudget.js";
-import Settings from "../settings/settings.js";
+import Viewbudgets from "../viewbudgets/viewbudgets.js";
+import Createbudget from "../createbudget/createbudget.js";
+import Deletebudget from "../deletebudget/deletebudget.js";
 
 
 function Main(props) {
@@ -27,7 +26,7 @@ function Main(props) {
 
     useEffect(() => {
         if (isAuth) {
-            props.history.push("/profile");
+            props.history.push("/viewbudgets");
         }
     }, [isAuth]);
 
@@ -40,12 +39,9 @@ function Main(props) {
             <Route path="/register" exact render={props => <Registration />} />
             <Route path="/login" exact render={props => <Login getData={getData} />} />
             <Route path="/" exact render={props => <LandingPage />} />
-            <Route path="/intro" exact render={props => <Profile />} />
-            <Route path="/getbudget" exact render={props => <Viewbudget />} />
-            <PrivateRoute user={user} setUser={setUser} path="/profile" render={props => <Profile />} exact component={Profile} isAuth={isAuth} />
-            <PrivateRoute user={user} setUser={setUser} path="/viewbudget" render={props => <Viewbudget />} exact component={Viewbudget} isAuth={isAuth} />
-            <PrivateRoute user={user} setUser={setUser} path="/editbudget" render={props => <Editbudget />} exact component={Editbudget} isAuth={isAuth} />
-            <PrivateRoute user={user} setUser={setUser} path="/settings" render={props => <Settings />} exact component={Settings} isAuth={isAuth} />
+            <PrivateRoute user={user} setUser={setUser} path="/viewbudgets" render={props => <Viewbudgets />} exact component={Viewbudgets} isAuth={isAuth} />
+            <PrivateRoute user={user} setUser={setUser} path="/createbudget" render={props => <Createbudget />} exact component={Createbudget} isAuth={isAuth} />
+            <PrivateRoute user={user} setUser={setUser} path="/deletebudget" render={props => <Deletebudget />} exact component={Deletebudget} isAuth={isAuth} />
         </>
     )
 }
