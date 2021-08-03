@@ -10,7 +10,7 @@ export default class Viewbudgets extends React.Component {
         super();
         this.state = {
             user: "",
-            data: [],
+            data: null,
             singleBudgetData: {},
             graph: "Pie",
             borders: [`rgb(0,0,0)`],
@@ -59,10 +59,16 @@ export default class Viewbudgets extends React.Component {
         }).then((result) => {
             if (result) {
                 let arr = result.data.obj.budget;
-                this.setState({
-                    data: arr
-                })
-                console.log(arr);
+                if (arr.length > 0) {
+                    this.setState({
+                        data: arr
+                    })
+                }
+                else {
+                    this.setState({
+                        data: null
+                    })
+                }
             }
             else {
                 console.log("user not found")
@@ -72,11 +78,20 @@ export default class Viewbudgets extends React.Component {
                 console.log(err);
             }
         })
+
     }
     render() {
         const { user } = this.props;
         const { data, graph, borders, colors, singleBudget } = this.state;
-        if (!singleBudget) {
+        if (data === null) {
+            return (
+                <div>
+                    <UserNav user={user} />
+                    <div className="view-budgets-text">No Budgets Created Yet...</div>
+                </div>
+            )
+        }
+        else if (!singleBudget) {
             return (
                 <div>
                     <UserNav user={user} />
