@@ -1,6 +1,5 @@
 import React from 'react'
 import { Route, Redirect, withRouter } from "react-router-dom";
-import Viewbudget from "../viewbudget/viewbudget.js";
 
 function PrivateRoute({ isAuth: isAuth, component: Component, user: user, setUser: setUser, ...rest }) {
     return (
