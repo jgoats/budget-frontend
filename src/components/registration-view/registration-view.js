@@ -97,7 +97,7 @@ export default class Registration extends React.Component {
             && passwordSpecialCharacter !== Cancel) {
             axios({
                 method: "post",
-                url: "http://localhost:2500/register",
+                url: "https://budget-backend426.herokuapp.com/register",
                 headers: {
                     'Content-Type': "application/json"
                 },

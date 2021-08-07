@@ -92,7 +92,7 @@ class Deletebudget extends React.Component {
         })
         axios({
             method: "get",
-            url: `http://localhost:2500/budgets/${this.props.user}`,
+            url: `https://budget-backend426.herokuapp.com/budgets/${this.props.user}`,
             headers: {
                 'Content-Type': "application/json",
                 "Authorization": `${"Bearer"} ${this.props.token}`

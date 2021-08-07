@@ -59,7 +59,7 @@ class Createbudget extends React.Component {
         e.preventDefault();
         axios({
             method: "post",
-            url: "http://localhost:2500/userdata",
+            url: "https://budget-backend426.herokuapp.com/userdata",
             headers: {
                 'Content-Type': "application/json",
                 "Authorization": `${"Bearer"} ${this.props.token}`

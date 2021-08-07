@@ -125,7 +125,7 @@ export default class Login extends React.Component {
         e.preventDefault();
         axios({
             method: "get",
-            url: "http://localhost:2500/users",
+            url: "https://budget-backend426.herokuapp.com/users",
             headers: { "Authorization": `Bearer ` + this.state.token },
         }).then((result) => {
             if (result) console.log(result);
