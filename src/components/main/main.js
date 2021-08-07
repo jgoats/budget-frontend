@@ -39,7 +39,6 @@ function Main(props) {
             <Route path="/register" exact render={props => <Registration />} />
             <Route path="/login" exact render={props => <Login getData={getData} />} />
             <Route path="/" exact render={props => <LandingPage />} />
-            <Route path="/createabudget" exact render={props => <Createbudget />} />
             <PrivateRoute user={user} setUser={setUser} path="/viewbudgets" render={props => <Viewbudgets />} exact component={Viewbudgets} isAuth={isAuth} />
             <PrivateRoute user={user} setUser={setUser} path="/createbudget" render={props => <Createbudget />} exact component={Createbudget} isAuth={isAuth} />
             <PrivateRoute user={user} setUser={setUser} path="/deletebudget" render={props => <Deletebudget />} exact component={Deletebudget} isAuth={isAuth} />
