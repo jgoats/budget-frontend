@@ -5,10 +5,9 @@
     height : 80vh;
     box-shadow : 0px 0px 7px black;
     background-color : white;
-    margin-left : 10vw;
-    margin-right : 10vw;
-    top : 50%;
-    transform : translateY(-50%);
+    left : 50%;
+    transform : translateX(-50%);
+    top : 10%;
     padding : 20px;
 }
 .handle-delete-question {
@@ -52,4 +51,18 @@
     font-weight : bold;
     font-size : 25px;
     margin-right : 20px;
+}
+@media screen and (max-width: 600px) {
+    .handle-delete-main-container {
+        position : fixed;
+        z-index : 2;
+        width : 90vw;
+        height : 80vh;
+        box-shadow : 0px 0px 7px black;
+        background-color : white;
+        left : 50%;
+        transform : translateX(-50%);
+        top : 10%;
+        padding : 20px;
+    }
 }

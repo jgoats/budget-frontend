@@ -147,7 +147,7 @@ export default class Registration extends React.Component {
                 if (err) {
                     console.log(err);
                     this.setState({
-                        error: "there was an error"
+                        error: "there was an error, please try again"
                     })
                     window.setTimeout(function () {
                         this.setState({
@@ -172,52 +172,42 @@ export default class Registration extends React.Component {
 
     render() {
         return (
-            <div>
+            <div className="registration-main-container">
                 <Nav />
                 <div className="registration-container">
                     <div className='register-container'>
-                        <div>
-                            <label className="label">Username</label>
+                        <div className="registration-item">
+                            <label className="registration-label">Username</label><input className="registration-input" value={this.state.username} onChange={(e) => this.getUsername(e)} type="text" name="username" />
                         </div>
-                        <div>
-                            <input value={this.state.username} onChange={(e) => this.getUsername(e)} type="text" name="username" />
-                        </div>
-                        <div>
-                            <label className="label">Password</label>
-                        </div>
-                        <div>
-                            <input value={this.state.password} onChange={(e) => this.getPassword(e)} type="password" name="password" />
+                        <div className="registration-item">
+                            <label className="registration-label">Password</label><input className="registration-input" value={this.state.password} onChange={(e) => this.getPassword(e)} type="password" name="password" />
                         </div>
 
-                        <div>
+                        <div className="registration-item">
                             <button className="register" onClick={(e) => this.register(e)}>Register</button>
                         </div>
-                        <div className="message-container">
+                        <div className="registration-item">
                             <p className="error">{this.state.error}</p>
                             <p className="userMessage">{this.state.user}</p>
                         </div>
                     </div>
                     <div className="validation-container">
                         <div className="center-content">
-                            <div className="username-validation-container">
-                                <div className="inline">
-                                    <p>Username length must be at least 5 characters long</p>
-                                    <img className="validation-icon" src={this.state.usernameLength} />
-                                </div>
+                            <div className="inline">
+                                <p>Username length must be at least 5 characters long</p>
+                                <img className="validation-icon" src={this.state.usernameLength} />
                             </div>
-                            <div className="password-validation-container">
-                                <div className="inline">
-                                    <p>Password length must be at least 8 characters long</p>
-                                    <img className="validation-icon" src={this.state.passwordLength} />
-                                </div>
-                                <div className="inline">
-                                    <p>Password must container a number or special character</p>
-                                    <img className="validation-icon" src={this.state.passwordSpecialCharacter} />
-                                </div>
-                                <div className="inline">
-                                    <p>Password must contain a capital letter</p>
-                                    <img className="validation-icon" src={this.state.passwordCapitalLetter} />
-                                </div>
+                            <div className="inline">
+                                <p>Password length must be at least 8 characters long</p>
+                                <img className="validation-icon" src={this.state.passwordLength} />
+                            </div>
+                            <div className="inline">
+                                <p>Password must container a number or special character</p>
+                                <img className="validation-icon" src={this.state.passwordSpecialCharacter} />
+                            </div>
+                            <div className="inline">
+                                <p>Password must contain a capital letter</p>
+                                <img className="validation-icon" src={this.state.passwordCapitalLetter} />
                             </div>
                         </div>
                     </div>

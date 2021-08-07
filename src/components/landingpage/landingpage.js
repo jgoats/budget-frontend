@@ -5,7 +5,7 @@ import Nav from "../nav/nav.js";
 export default class LandingPage extends React.Component {
     render() {
         return (
-            <div>
+            <div className="landing-page-container">
                 <Nav />
                 <div className="main-container">
                     <div className="content-container">
@@ -19,8 +19,12 @@ export default class LandingPage extends React.Component {
                             </div>
                         </div>
                         <div className="prototype-graph">
-                            <Graph backgroundColor={["blue", "orange", "green", "purple", "red"]} data={[40, 10, 50, 30, 20]} />
+                            <div>
+                                <Graph backgroundColor={["blue", "orange", "green", "purple", "red"]} data={[40, 10, 50, 30, 20]} />
+                            </div>
                         </div>
+
+
                     </div>
                 </div>
             </div>

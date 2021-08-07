@@ -1,3 +1,57 @@
+.user-nav-main-container {
+    height : 50px;
+}
+.user-hamburger-container {
+    width : 35px;
+    height : auto;
+    position : absolute;
+    display : none;
+    left : 85%;
+    top : 25px;
+    transform : translateY(-50%);
+}
+.user-hamburger-content-item a {
+    text-decoration : none;
+    color : black;
+}
+.user-hamburger-content-item:hover {
+    background-color : rgb(180,180,180);
+}
+.user-hamburger-item {
+    border : 2px solid black;
+    border-top : none;
+    border-left : none;
+    border-right : none;
+    margin : 4px;
+}
+.user-hamburger-content-container-off {
+    display : none;
+    height : auto;
+    align-items : center;
+    justify-content: center;
+    flex-direction: column;
+    position : absolute;
+    z-index : 2;
+    left : 35%;
+    width : 50%;
+    background-color : white;
+    border : 1px solid green;
+}
+.user-hamburger-content-container-active {
+    height : auto;
+    display : none;
+    align-items : center;
+    justify-content: center;
+    flex-direction: column;
+    position : absolute;
+    z-index : 2;
+    left : 35%;
+    top : 50%;
+    width : 50%;
+    background-color : white;
+}
+
+
 .user-navigation-container {
     display : flex;
     flex-direction: row;
@@ -9,6 +63,8 @@
     justify-content : space-evenly;
     padding : 0px;
     margin : 0px;
+    position : absolute;    
+    z-index : 1;
 }
 .user-navigation-item {
     list-style: none;
@@ -29,4 +85,65 @@
 }
 .user-navigation-item a:hover {
     cursor: pointer;
+}
+@media screen and (max-width: 800px) {
+    .user-navigation-container {
+        display : none;
+    }
+    .user-hamburger-content-item {
+        list-style: none;
+        font-weight : bold;
+        font-size : 20px;
+        width : 100%;
+        text-align : center;
+        padding : 10px 0px 10px 0px;
+    }
+    .user-hamburger-container {
+        width : 35px;
+        height : auto;
+        position : absolute;
+        display : block;
+        left : 75%;
+        top : 25px;
+        transform : translateY(-50%);
+        z-index : 2;
+    }
+    .hamburger-user {
+        position : absolute;
+        display : block;
+        top : 25px;
+        left : 85%;
+        transform : translateY(-125%);
+        color : black;
+        padding-left : 1rem;
+        font-weight : bolder;
+    }
+    .user-hamburger-container:hover {
+        cursor: pointer;
+     }
+    .user-hamburger-content-container-active {
+    height : auto;
+    display : flex;
+    align-items : center;
+    justify-content: center;
+    flex-direction: column;
+    box-shadow : 0px 0px 3px black;
+    position : absolute;
+    z-index : 2;
+    left : 50%;
+    transform : translateX(-50%);
+    top : 30%;
+    width : 50%;
+    background-color : rgb(255, 255, 255);
+    animation : hamburgerMenu 0.5s;
+    }
+    @keyframes hamburgerMenu {
+        from {
+            top : 0%;
+        }
+        to {
+            top : 30%;
+        }
+    }
+    
 }

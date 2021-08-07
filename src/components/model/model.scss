@@ -12,20 +12,20 @@
     grid-template-columns : 1fr 1fr;
     grid-template-rows : 100vh;
     overflow-y : hidden;
-
 }
 .model-question {
     font-weight: bolder;
     font-size : 30px;
     left : 50%;
-    transform : translateX(-50%);
+    width : 100%;
     position : absolute;
-    top : 10%;
-
+    text-align : center;
+    top : 1%;
+    left : 0%;
 
 }
 .model-message {
-    color : rgb(68, 4, 4);
+    color : rgb(0, 0, 0);
     box-shadow : none;
     margin-bottom : 20px;
     font-size : 22px;
@@ -34,7 +34,7 @@
     display : block;
     margin-right : auto;
     margin-left : auto;
-    font-weight : bold;
+    font-family: 'Oxygen', sans-serif;
 }
 .model-input {
     display : block;
@@ -71,34 +71,80 @@
     cursor : pointer;
 }
 .model-input-container {
-    //here
 display : flex;
 align-items : center;
 justify-content: center;
 height : 100vh;
-
 }
 .model-input-container div {
     display : block;
     width : 40vw;
 }
 .model-btn-container {
-    //here
 display : flex;
 align-items : center;
 justify-content : center;
+flex-direction : row;
 }
 .model-validation-technique {
     display : flex;
     align-items : center;
     justify-content : center;
+    flex-direction: column;
 }
 .model-paragraph {
-    margin-right : 20px;
+    text-align : center;
     font-size : 25px;
     font-weight : bolder;
+    width : 100%;
 }
 .model-image {
     width : 35px;
     height : 35px;
+}
+@media screen and (max-width: 800px) {
+    .model-main-container {
+        width : 100vw;
+        height : calc(100vh + 50px);
+        box-shadow : 0px 0px 8px black;
+        position : absolute;
+        top : 0%;
+        transform : translateY(-50px);
+        z-index : 0;
+        background : url("../../images/Flat-Mountains.svg");
+        background-size : cover;
+        display : grid;
+        grid-template-columns : 1fr;
+        grid-template-rows : auto;
+        overflow-y: hidden;
+    }
+    .model-input-container {
+        display : flex;
+        align-items : center;
+        justify-content: center;
+        height : calc(50vh - 25px);
+        position : relative;
+        transform : translateY(100px);
+        }
+        .model-question {
+            font-weight: bolder;
+            font-size : 30px;
+            left : 50%;
+            width : 100%;
+            position : absolute;
+            text-align : center;
+            top : 90px;
+            left : 0%;
+        
+        }
+    .model-btn-container {
+        height : calc(50vh - 25px);
+        display : flex;
+        align-items : center;
+        justify-content : center;
+        flex-direction : row;
+        }
+        .model-input {
+            width : 100%;
+        }
 }

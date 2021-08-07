@@ -1,78 +1,85 @@
+.registration-main-container {
+    height : calc(100vh);
+    background-color : rgb(197, 140, 243);
+}
 .registration-container {
     display : grid;
     grid-template-columns : 1fr 1fr;
     grid-template-rows : auto;
     position : relative;
-    margin-top : 60px;
+    font-family: 'Oxygen', sans-serif;
+    top : 50px;
 }
 .register-container {
-    background-color : black;
-   text-align : center;
-   display : grid;
-   grid-template-columns : 1fr;
-   grid-template-rows : repeat(6, 12vh);
-   height : 72vh;
-   div {
-       position : relative;
-       top : 50%;
-   }
-   div label , button , input {
     position : relative;
-    top : 50%;
-    transform : translateY(-50%);
+   text-align : center;
+   display : flex;
+   align-items : stretch;
+   justify-content: center;
+   flex-direction: column;
+   .registration-item {
+       display : flex;
+       align-items : center;
+       justify-content : center;
+       height : 20vh;
+       position : relative;
+       color : black;
+       .registration-input {
+        margin-left : 10px;
+        font-size : 25px;
+        width : 50%;
+        color : black;
+       }
    }
- }
- input {
-    border-top-style: hidden;
-    border-right-style: hidden;
-    border-left-style: hidden;
-    border-bottom-style: solid;
-    border-color : rgb(40,40,40);
-    background-color : black;
-    color : white;
-    font-size : 20px;
  }
  input:focus {
     outline : none;
  }
  .validation-container {
-     height : 72vh;
-     background-color :rgb(214, 240, 240);
+    position : relative;
  }
  .center-content{
      position : relative;
      top : 50%;
      transform : translateY(-50%);
+     width : 100%;
  }
  .error {
      display : block;
-     color : rgb(243, 104, 104);
-     position : relative;
-     transform : translateY(-50%);
-     margin : 5px;
+     color : rgb(0, 0, 0);
+     font-size : 25px;
+     font-weight : bold;
  }
  .userMessage {
      display : block;
-     color : rgb(116, 206, 116);
-     position : relative;
-     transform : translateY(-50%);
-     margin : 0px;
+     color : rgb(0, 0, 0);
+     font-size : 25px;
+     font-weight : bold;
+     
  }
- .label {
-     color : white;
+ .registration-label {
+     color : black;
+     font-size : 25px;
+     font-weight : bold;
  }
  .inline {
-     display : flex;
-     align-items : center;
- }
+    display : flex;
+    height : 20vh;
+    align-items : center;
+    box-shadow : 0px 0px 3px black;
+    justify-content: center;
+    flex-direction : row;
+    background-color : white;
+}
  
  .inline p {
      display : inline-block;
      text-align : left;
      padding-left : 20px;
      width : calc(90% - 30px);
-     font-size : 18px;
+     font-size : 25px;
      margin-right : 10px;
+     color : black;
      font-weight : bold;
      }
      .validation-icon {
@@ -83,10 +90,11 @@
     
  .register {
      background-color : rgb(87, 189, 69);
-     padding : 5px 15px 5px 15px;
+     padding : 5px 8px 5px 8px;
      border : none;
-     color : white;
-     border-radius : 15px;
+     color : black;
+     border-radius : 5px;
+     font-size : 25px;
  }
  .register:hover {
      background-color : rgb(62, 160, 45);
@@ -102,3 +110,78 @@
     margin-bottom : -15px;
     opacity : 0;
 };
+@media screen and (max-width: 800px) {
+    .registration-container {
+        display : grid;
+        grid-template-columns : 1fr;
+        grid-template-rows : auto;
+        position : relative;
+        height : auto;
+        background-color : rgb(197, 140, 243);
+    }
+    .register-container {
+       text-align : center;
+       display : grid;
+       grid-template-columns : 1fr;
+       grid-template-rows : auto;
+       height : auto;
+       .registration-item {
+        height : auto;
+        margin-left : 10px;
+        margin-right : 10px;
+        display : flex;
+        align-items : center;
+        justify-content: center;
+        flex-direction: row;
+        height : 100px;
+        .register {
+            background-color : rgb(87, 189, 69);
+            padding : 5px 8px 5px 8px;
+            border : none;
+            color : black;
+            border-radius : 5px;
+        }
+        .register:hover {
+            background-color : rgb(62, 160, 45);
+            cursor: pointer;
+        }
+        
+       }
+     }
+     .validation-container {
+        height : auto;
+        display : flex;
+        justify-content: center;
+        margin : 10px;
+        background-color : rgb(197, 140, 243);
+    }
+    .inline {
+        display : flex;
+        align-items : center;
+        box-shadow : 0px 0px 3px black;
+        justify-content: center;
+        flex-direction : row;
+        margin-bottom : 10px;
+        margin-top : 10px;
+        background-color : white;
+    }
+    
+    .inline p {
+        display : inline-block;
+        text-align : center;
+        width : auto;
+        font-size : 25px;
+        font-weight : bold;
+        }
+        .validation-icon {
+            width : 30px;
+            height : 30px;
+            display : inline;
+            margin-bottom : 10px;
+        }
+        .registration-input {
+            font-size : 25px;
+            width : 50%;
+            color : black;
+           }
+}

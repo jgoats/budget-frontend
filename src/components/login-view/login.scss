@@ -1,34 +1,51 @@
+.main-login-container {
+    height : 100vh;
+    position : relative;
+    background-color : rgb(197, 140, 243);
+    overflow-x : hidden;
+}
 .login-container {
-    background-color : black;
-    margin-top : 60px;
+    background-color : white;
+    box-shadow : 0px 0px 7px black;
     text-align : center;
     margin-left : 20%;
     margin-right : 20%;
-    display : grid;
-    grid-template-columns : 1fr;
-    grid-template-rows : repeat(6, 12vh);
+    display : flex;
+    align-items : center;
+    justify-content : center;
+    flex-direction : column;
     height : 72vh;
-    div {
-        position : relative;
-        top : 50%;
-    }
-    div label , button , input {
-     position : relative;
-     top : 50%;
-     transform : translateY(-50%);
-    }
+    position : relative;
+    top : 50px;
+}
+.login-item {
+    width : 100%;
+    height : 12vh;
+    display : flex;
+    align-items : center;
+    justify-content : center;
+}
+.login-input {
+    font-size : 25px;
+    width : 90%;
+    max-width : 400px;
+    min-width : 200px;
 }
 .label {
-    color : white;
+    color : black;
+    font-size : 25px;
+    font-weight : bold;
 }
 .login {
     background-color : rgb(87, 189, 69);
-     padding : 5px 15px 5px 15px;
+     padding : 5px 8px 5px 8px;
      border : none;
-     color : white;
-     border-radius : 15px;
+     color : black;
+     border-radius : 5px;
+     font-size : 25px;
 }
 .login:hover {
     background-color : rgb(62, 160, 45);
     cursor: pointer;
 }
+
