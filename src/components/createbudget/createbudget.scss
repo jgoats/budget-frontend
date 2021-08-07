@@ -8,6 +8,10 @@
    grid-gap : 5px;
    height : 70vh;
 }
+.create-graph-container {
+    min-width : 200px;
+    width : 200px;
+}
 .create-budget-data-container {
     display : block;
     width : 100%;
@@ -20,12 +24,19 @@
     padding : 0px;
     margin : 5px;
 }
+.create-budget-message {
+    color : white;
+    font-weight : bold;
+    font-size : 25px;
+    text-align : center;
+}
 .envelopes {
-    height : 100%;
+   height : 100%;
    display : grid;
    grid-template-columns : 1fr;
    grid-template-rows : auto;
    box-shadow : 0px 0px 7px black; 
+   background-color : white;
 }
 .create-budget-submit {
     border : none;
@@ -62,6 +73,7 @@ display : none;
     justify-content : center;
     box-shadow : 0px 0px 7px black;
     margin-left : 10px;
+    background-color : white;
 }
 .label-container {
 display : flex;
@@ -69,8 +81,6 @@ align-items : center;
 padding : 0px;
 height : 30px;
 font-size : 20px;
-margin-bottom : 5px;
-margin-top : 2.5px;
 box-shadow : 0px 0px 2px black;
 padding : 2px;
 }
@@ -103,6 +113,13 @@ padding : 2px;
     display : flex;
     flex-direction : column;
     justify-content : center;
+    background-color : white;
+}
+.create-graph-container {
+    width : 200px;
+    padding-bottom : 10px;
+    margin-left : auto;
+    margin-right : auto;
 }
 .create-budget-graph div {
     text-align : center;
@@ -139,14 +156,82 @@ padding : 2px;
 .envelope-input {
     display : block;
     background-color : rgb(255, 255, 255);
-    box-shadow : 0px 0px 7px black;
+    border : 1px solid black;
     color : black;
-    border : none;
     outline : none;
     margin-right : auto;
     margin-left : auto;
-    width : 80%;
+    width : 100%;
     margin-top : 20px;
     margin-bottom : 20px;
-    border-radius : 5px;
+    font-size : 25px;
 }
+@media screen and (max-width: 800px) {
+    .create-budget-container {
+        width : 90vw;
+        display : grid;
+        grid-template-columns : 1fr;
+        grid-template-rows : auto;
+        font-family: 'Oxygen', sans-serif;
+        grid-gap : 5px;
+        height : auto;
+        margin-left : 5vw;
+        margin-right : 5vw;
+     }
+     .form-label-container {
+        display : flex;
+        align-items : center;
+        justify-content : center;
+        box-shadow : 0px 0px 7px black;
+        margin-left : 0px;
+        margin-top : 20px;
+        margin-bottom : 20px;
+    }
+    .create-budget-graph {
+        box-shadow : 0px 0px 5px black;
+        margin-right : 0px;
+        display : flex;
+        flex-direction : row;
+        justify-content : center;
+        align-items : center;
+        margin-bottom : 20px;
+    }
+    .create-graph-container {
+        margin-left : 0px;
+        margin-right : 0px;
+    }
+    .label-container {
+        display : flex;
+        align-items : center;
+        justify-content: center;
+        padding : 0px;
+        height : 30px;
+        font-size : 20px;
+        box-shadow : 0px 0px 2px black;
+        padding : 2px;
+        }
+        .envelope-label {
+            color : black;
+            text-align : center;
+            font-family: 'Oxygen', sans-serif;
+            background-color : white;
+            padding : 2px;
+            border-radius : 5px;
+        }
+        .label-image {
+            width : 20px;
+            height : 20px;
+            background-color : white;
+            border-radius : 5px;
+            padding : 5px;
+        }
+    .envelopes {
+       height : auto;
+       display : grid;
+       grid-template-columns : 1fr;
+       grid-template-rows : auto;
+       box-shadow : 0px 0px 7px black; 
+       margin-bottom : 20px;
+    }
+}
+

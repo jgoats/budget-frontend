@@ -12,7 +12,7 @@ class Createbudget extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            budgetTotal: 0,
+            budgetTotal: 2000,
             envelopes: [],
             data: [],
             borders: [`rgb(0,0,0)`],
@@ -242,11 +242,11 @@ class Createbudget extends React.Component {
                             </div>
                         </div>
                         <div className="create-budget-graph">
-                            <div>
+                            <div className="create-budget-button-container">
                                 <div onClick={this.changeToPie} className="pie-graph">Pie</div>
                                 <div onClick={this.changeToDough} className="doughnut-graph">Doughnut</div>
                             </div>
-                            <Graph graph={graph} blackBorder={borders} backgroundColor={colors} data={data} />
+                            <div className="create-graph-container"><Graph graph={graph} blackBorder={borders} backgroundColor={colors} data={data} /></div>
                         </div>
                     </div>
                 </div>
