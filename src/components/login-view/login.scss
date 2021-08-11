@@ -1,7 +1,7 @@
 .main-login-container {
     height : 100vh;
     position : relative;
-    background-image : url("../../images/Dragon-Scales.svg");
+    background-image : url("../../images/Bullseye-Gradient.svg");
     overflow-x : hidden;
 }
 .login-container {
@@ -45,9 +45,26 @@
      color : black;
      border-radius : 5px;
      font-size : 25px;
+     box-shadow : 0px 0px 3px black;
 }
 .login:hover {
     background-color : rgb(62, 160, 45);
     cursor: pointer;
+}
+@media screen and (max-width: 800px) { 
+    .login-container {
+        background-color: white;
+        box-shadow : 0px 0px 7px black;
+        text-align : center;
+        margin-left : 10%;
+        margin-right : 10%;
+        display : flex;
+        align-items : center;
+        justify-content : center;
+        flex-direction : column;
+        height : 72vh;
+        position : relative;
+        top : 50px;
+    }
 }
 
