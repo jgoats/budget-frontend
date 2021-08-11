@@ -147,7 +147,7 @@ export default class Registration extends React.Component {
                 if (err) {
                     console.log(err);
                     this.setState({
-                        error: "there was an error, please try again"
+                        error: err
                     })
                     window.setTimeout(function () {
                         this.setState({
