@@ -19,7 +19,7 @@ export default class LandingPage extends React.Component {
                             </div>
                         </div>
                         <div className="prototype-graph">
-                            <div>
+                            <div className="prototype-graph-container">
                                 <Graph backgroundColor={["blue", "orange", "green", "purple", "red"]} data={[40, 10, 50, 30, 20]} />
                             </div>
                         </div>

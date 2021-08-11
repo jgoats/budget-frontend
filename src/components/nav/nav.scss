@@ -116,24 +116,34 @@
     .hamburger-container {
         width : 35px;
         height : auto;
-        position : absolute;
+        position : fixed;
         display : block;
-        left : 85%;
-        top : 25px;
+        left : calc(85% - 17.5px);
+        top : 50px;
         transform : translateY(-50%);
+        z-index : 3;
+        background-color : rgb(0, 0, 0);
+        box-shadow : 0px 0px 7px black;
+        padding : 10px;
+        border-radius : 5px;
     }
     .hamburger-container:hover {
         width : 35px;
         height : auto;
-        position : absolute;
+        position : fixed;
         display : block;
-        left : 85%;
-        top : 25px;
+        left : calc(85% - 17.5px);
+        top : 50px;
         transform : translateY(-50%);
+        z-index : 3;
+        background-color : rgb(36, 33, 33);
+        box-shadow : 0px 0px 7px black;
+        padding : 10px;
         cursor: pointer;
+        transition : 0.5s;
     }
     .hamburger-item {
-        border : 2px solid black;
+        border : 2px solid rgb(255, 255, 255);
         border-top : none;
         border-left : none;
         border-right : none;
