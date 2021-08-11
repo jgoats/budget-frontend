@@ -39,12 +39,13 @@ export default class Login extends React.Component {
         if (username !== "" || password !== "") {
             axios({
                 method: "post",
-                url: "http://localhost:2500/login",
+                url: "https://budget-backend426.herokuapp.com/login",
                 headers: {
-                    'Content-Type': "application/json"
+                    'Content-Type': "application/json",
                 },
                 data: data
             }).then((user) => {
+                console.log(user);
                 if (!user) {
                     window.setTimeout(function () {
                         this.setState({

@@ -46,7 +46,7 @@ class Deletebudget extends React.Component {
             const { name, username, index } = this.state.userData;
             axios({
                 method: "post",
-                url: `http://localhost:2500/deleteuserdata`,
+                url: `https://budget-backend426.herokuapp.com/deleteuserdata`,
                 headers: {
                     'Content-Type': "application/json",
                     "Authorization": `${"Bearer"} ${this.props.token}`
