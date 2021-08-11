@@ -147,7 +147,7 @@ export default class Registration extends React.Component {
                 if (err) {
                     console.log(err);
                     this.setState({
-                        error: err
+                        error: "error, make sure you are using the secure version (https)"
                     })
                     window.setTimeout(function () {
                         this.setState({

@@ -3,7 +3,7 @@ body {
     padding : 0px;
     box-sizing : border-box;
     overflow-x : hidden;
-    overflow-y : overflow;
+    overflow-y : hidden;
     font-family: 'Oxygen', sans-serif;
 }
 .landing-page-container {
@@ -11,6 +11,7 @@ body {
     position : relative;
     background-image : url("../../images/Tortoise-Shell.svg");
     overflow-x : hidden;
+    overflow-y : hidden;
 }
 
 .main-container {
@@ -70,10 +71,18 @@ font-weight : 600;
     height : auto;
 }
 @media screen and (max-width: 800px) {
+    .main-container {
+        width : 100vw;
+        position : relative;
+        top : calc(40% + 25px);
+        background-repeat : no-repeat;
+        background-size : cover;
+        overflow-x : hidden;
+    }
     .content-container {
         position : relative;
         width : 90vw;
-        height : 100vh;
+        height : 90vh;
         display : flex;
         align-items:flex-start;
         justify-content : center;
@@ -90,8 +99,8 @@ font-weight : 600;
         margin-bottom : 30px;
     }
     .prototype-graph div {
-        min-width : 200px;
-        max-width : 400px;
+        min-width : 100px;
+        max-width : 300px;
         margin-right : auto;
         margin-left : auto;
         display : block;
