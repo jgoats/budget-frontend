@@ -5,7 +5,7 @@
    grid-template-columns : 2fr 2fr 1fr;
    grid-template-rows : auto;
    font-family: 'Oxygen', sans-serif;
-   grid-gap : 5px;
+   grid-gap : 20px;
    height : 70vh;
 }
 .create-graph-container {
@@ -23,6 +23,7 @@
     font-size : 25px;
     padding : 0px;
     margin : 5px;
+    color : white;
 }
 .create-budget-message {
     color : white;
@@ -116,7 +117,8 @@ padding : 2px;
     background-color : white;
 }
 .create-graph-container {
-    width : 200px;
+    max-width : 200px;
+    min-width : 100px;
     padding-bottom : 10px;
     margin-left : auto;
     margin-right : auto;
@@ -161,7 +163,7 @@ padding : 2px;
     outline : none;
     margin-right : auto;
     margin-left : auto;
-    width : 100%;
+    width : 70%;
     margin-top : 20px;
     margin-bottom : 20px;
     font-size : 25px;
@@ -175,8 +177,9 @@ padding : 2px;
         font-family: 'Oxygen', sans-serif;
         grid-gap : 5px;
         height : auto;
-        margin-left : 5vw;
-        margin-right : 5vw;
+       position : relative;
+       left : 50%;
+       transform : translateX(-50%);
      }
      .form-label-container {
         display : flex;
@@ -184,21 +187,36 @@ padding : 2px;
         justify-content : center;
         box-shadow : 0px 0px 7px black;
         margin-left : 0px;
+        margin-right : 0px;
         margin-top : 20px;
         margin-bottom : 20px;
+        width : 75vw;
+        position : relative;
+        left : 50%;
+        transform : translateX(-50%);
     }
     .create-budget-graph {
         box-shadow : 0px 0px 5px black;
         margin-right : 0px;
+        margin-right : 0px;
         display : flex;
-        flex-direction : row;
+        flex-direction : column;
         justify-content : center;
         align-items : center;
         margin-bottom : 20px;
+        position : relative;
+        left : 50%;
+        width : 75vw;
+        transform  : translateX(-50%);
+        height : auto;
+    }
+    .create-budget-button-container {
+        padding : 10px;
     }
     .create-graph-container {
         margin-left : 0px;
         margin-right : 0px;
+        margin-bottom : 20px;
     }
     .label-container {
         display : flex;
@@ -217,6 +235,10 @@ padding : 2px;
             background-color : white;
             padding : 2px;
             border-radius : 5px;
+            width : 70%;
+        }
+        .envelope-input {
+        width : 70%;
         }
         .label-image {
             width : 20px;

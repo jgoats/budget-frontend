@@ -139,7 +139,6 @@ export default class Login extends React.Component {
     }
 
     render() {
-        console.log(this.state.token);
         return (
             <div className="main-login-container">
                 <Nav />

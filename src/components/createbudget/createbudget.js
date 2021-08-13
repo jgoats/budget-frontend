@@ -43,6 +43,13 @@ class Createbudget extends React.Component {
         this.envelope = null;
         this.cost = null;
     }
+    componentDidMount() {
+        window.addEventListener('onbeforeunload', this.props.redirect);
+    }
+
+    componentWillUnmount() {
+        window.removeEventListener('onbeforeunload', this.props.redirect);
+    }
     changeToDough() {
         this.setState({
             graph: "Dough"

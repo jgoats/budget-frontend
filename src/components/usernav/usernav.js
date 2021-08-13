@@ -30,9 +30,11 @@ export default class Usernav extends React.Component {
         return (
             <div className="user-nav-main-container">
                 <div onClick={this.toggleUserHamburgerContainer} className="user-hamburger-container">
-                    <div className="user-hamburger-item"></div>
-                    <div className="user-hamburger-item"></div>
-                    <div className="user-hamburger-item"></div>
+                    <div className="hamburger">
+                        <div className="user-hamburger-item"></div>
+                        <div className="user-hamburger-item"></div>
+                        <div className="user-hamburger-item"></div>
+                    </div>
                     <div className="hamburger-user">{this.props.user}</div>
                 </div>
                 <div className={this.state.hamburgerContent}>

@@ -1,14 +1,17 @@
 .user-nav-main-container {
     height : 50px;
 }
-.user-hamburger-container {
+.hamburger {
     width : 35px;
     height : auto;
-    position : absolute;
+    position : fixed;
     display : none;
-    left : 85%;
-    top : 25px;
-    transform : translateY(-50%);
+    left : calc(65% - 17.5px);
+    top : 0px;
+    z-index : 3;
+}
+.user-hamburger-container {
+    display : none;
 }
 .user-hamburger-content-item a {
     text-decoration : none;
@@ -18,7 +21,7 @@
     background-color : rgb(180,180,180);
 }
 .user-hamburger-item {
-    border : 2px solid black;
+    border : 2px solid rgb(255, 255, 255);
     border-top : none;
     border-left : none;
     border-right : none;
@@ -87,6 +90,13 @@
     cursor: pointer;
 }
 @media screen and (max-width: 800px) {
+    .user-hamburger-item {
+        border : 2px solid rgb(255, 255, 255);
+        border-top : none;
+        border-left : none;
+        border-right : none;
+        margin : 4px;
+    }
     .user-navigation-container {
         display : none;
     }
@@ -99,24 +109,41 @@
         padding : 10px 0px 10px 0px;
     }
     .user-hamburger-container {
+      display : block;
+    }
+    .hamburger {
         width : 35px;
-        height : auto;
-        position : absolute;
+        height : 22px;
+        position : fixed;
         display : block;
-        left : 75%;
-        top : 25px;
+        left : calc(65% - 25.5px);
+        top : 50px;
         transform : translateY(-50%);
-        z-index : 2;
+        z-index : 3;
+        background-color : black;
+        box-shadow : 0px 0px 5px black;
+        padding : 10px 5px 10px 5px;
+    }
+    .hamburger:hover {
+        background-color : rgb(29, 25, 25);
     }
     .hamburger-user {
-        position : absolute;
-        display : block;
-        top : 25px;
-        left : 85%;
-        transform : translateY(-125%);
-        color : black;
-        padding-left : 1rem;
+        position : fixed;
+        display : flex;
+        left : calc(65%);
+        top : 50px;
+        padding : 10px 10px 10px 10px;
+        transform : translateY(-50%);
+        color : rgb(106, 234, 238);
         font-weight : bolder;
+        background-color : black;
+        height : 22px;
+        padding-left : 2rem;
+        box-shadow : 0px 0px 5px black;
+        align-items : center;
+        justify-content: center;
+        width : auto;
+        z-index : 3;
     }
     .user-hamburger-container:hover {
         cursor: pointer;
@@ -142,7 +169,7 @@
             top : 0%;
         }
         to {
-            top : 30%;
+            top : 30vh;
         }
     }
     
