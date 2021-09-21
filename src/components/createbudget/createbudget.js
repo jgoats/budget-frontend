@@ -12,7 +12,7 @@ class Createbudget extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            budgetTotal: 2000,
+            budgetTotal: 0,
             envelopes: [],
             data: [],
             borders: [`rgb(0,0,0)`],
